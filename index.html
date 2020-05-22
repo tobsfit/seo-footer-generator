@@ -301,18 +301,18 @@
             var btn = currentImage;
             var close = document.getElementsByClassName("close")[0];
             modal.style.display = "block";
-
+            // close modal
             close.onclick = function () {
-              closeModal(currentImage)
+              modal.style.display = "none";
             }
-            
             window.onclick = function (event) {
               if (event.target == modal) {
-                closeModal(currentImage)
+                modal.style.display = "none";
               }
             }
-            
-            document.querySelector('#form-image-submit').addEventListener('click', (e) => {
+            // submit form
+            document.querySelector('#form-image-submit').addEventListener('click', (formData) => {
+              console.log(formData);
               closeModal(currentImage);
               e.preventDefault();
             });
