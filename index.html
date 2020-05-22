@@ -17,11 +17,11 @@
   <div id="image-modal" class="modal">
     <div class="modal-content">
       <span class="close">&times;</span>
-      <form>
+      <form id="form-image" name="form-image">
         <label>Image ALT</label>
-        <input id="form-image-alt" name="form-image-alt" type="text" placeholder="Image ALT" />
+        <input id="form-image--alt" name="form-image--alt" type="text" placeholder="Image ALT" />
         <label>Image URL</label>
-        <input id="form-image-url" name="form-image-url" type="text" placeholder="Image URL" />
+        <input id="form-image--url" name="form-image--url" type="text" placeholder="Image URL" />
         <button id="form-image-submit" type="submit">Submit</button>
       </form>
     </div>
@@ -311,15 +311,15 @@
               }
             }
             // submit form
-            document.querySelector('#form-image-submit').addEventListener('submit', (formData) => {
+            document.querySelector('#form-image').addEventListener('submit', (formData) => {
               console.log(formData);
               closeModal(currentImage);
               e.preventDefault();
             });
 
             function closeModal(image) {
-              image.alt = document.querySelector('#form-image-alt').value;
-              image.src = document.querySelector('#form-image-url').value;
+              image.alt = document.querySelector('#form-image--alt').value;
+              image.src = document.querySelector('#form-image--url').value;
               modal.style.display = "none";
             }
 
