@@ -50,22 +50,3 @@ body {
   margin-right: auto;
   margin-left: auto;
 }
-
-.article-container {
-  display: flex;
-  flex-direction: column;
-}
-
-article {
-  padding: 0 1rem;
-}
-
-.img-responsive {
-  width: 100%;;
-}
-
-@media screen and (min-width: 768px) {
-  .article-container {
-    flex-direction: row;
-  }
-}

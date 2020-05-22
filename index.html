@@ -53,6 +53,27 @@
 
     <main>
       <div id="clipboard">
+        <style>
+          .article-container {
+            display: flex;
+            flex-direction: column;
+          }
+
+          article {
+            padding: 0 1rem;
+          }
+
+          .img-responsive {
+            width: 100%;
+            ;
+          }
+
+          @media screen and (min-width: 768px) {
+            .article-container {
+              flex-direction: row;
+            }
+          }
+        </style>
         <div class="surfooter">
           <section data-editable="">
             <h3>Lorem ipsum dolor sit amet</h3>
@@ -248,7 +269,7 @@
         // copy markup
         document.querySelector('#copy-content-clipboard').addEventListener('click', () => {
           console.log('copy-content-clipboard');
-          
+
           var clipboardContent = document.getElementById("clipboard").innerHTML;
           copySurfooterMarkup(clipboardContent);
 
