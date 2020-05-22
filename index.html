@@ -243,23 +243,23 @@
         });
       });
 
-      function copySurfooterMarkup(str) {
-        function listener(e) {
-          e.clipboardData.setData('text/html', str);
-          e.clipboardData.setData('text/plain', str);
-          e.preventDefault();
-        }
-        document.addEventListener('copy', listener);
-        document.execCommand('copy');
-        document.removeEventListener('copy', listener);
-      }
-
 
       document.addEventListener('DOMContentLoaded', () => {
         // copy markup
         document.querySelector('#copy-content-clipboard').addEventListener('click', () => {
           console.log('copy-content-clipboard');
-          copySurfooterMarkup(document.getElementById("#clipboard").innerHTML)
+          copySurfooterMarkup(document.getElementById("#clipboard").innerHTML);
+
+          function copySurfooterMarkup(str) {
+            function listener(e) {
+              e.clipboardData.setData('text/html', str);
+              e.clipboardData.setData('text/plain', str);
+              e.preventDefault();
+            }
+            document.addEventListener('copy', listener);
+            document.execCommand('copy');
+            document.removeEventListener('copy', listener);
+          }
         });
 
         var editableImages = document.querySelectorAll('[data-editable-image]')
