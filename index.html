@@ -63,6 +63,14 @@
             padding: 0 1rem;
           }
 
+          article:first-child {
+            padding-left: 0;
+          }
+
+          article:last-child {
+            padding-right: 0;
+          }
+
           .img-responsive {
             width: 100%;
             ;
@@ -251,7 +259,7 @@
         // Add support for auto-save
         editor.addEventListener('start', function (ev) {
           var _this = this;
-          // Call save every 30 seconds
+
           function autoSave() {
             _this.save(true);
           };
@@ -262,10 +270,7 @@
           // Stop the autosave
           clearInterval(this.autoSaveTimer);
         });
-      });
 
-
-      document.addEventListener('DOMContentLoaded', () => {
         // copy markup
         document.querySelector('#copy-content-clipboard').addEventListener('click', () => {
           console.log('copy-content-clipboard');
@@ -285,19 +290,11 @@
           }
         });
 
+        // insert images
         var editableImages = document.querySelectorAll('[data-editable-image]')
         editableImages.forEach(function (elem, index) {
           elem.addEventListener('click', (e) => {
-            function updateImage() {
-              e.target.alt = document.querySelector('#form-image-alt').value;
-              e.target.src = document.querySelector('#form-image-url').value;
-            }
-
-            function closeModal() {
-              updateImage();
-              modal.style.display = "none";
-            }
-            updateImage();
+            console.log(e)
             var modal = document.getElementById("image-modal");
             var btn = e.target;
             var close = document.getElementsByClassName("close")[0];
@@ -314,7 +311,18 @@
             document.querySelector('#form-image-submit').addEventListener('click', (e) => {
               closeModal();
               e.preventDefault();
-            })
+            });
+
+            function updateImage() {
+              e.target.alt = document.querySelector('#form-image-alt').value;
+              e.target.src = document.querySelector('#form-image-url').value;
+            }
+
+            function closeModal() {
+              updateImage();
+              modal.style.display = "none";
+            }
+
           });
         });
 
@@ -480,6 +488,7 @@
           }
           document.querySelector('#clipboard').innerHTML = content
         });
+
       });
     </script>
   </div>
