@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,400;0,500;0,900;1,100;1,400;1,900&display=swap');
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
 /* The Modal (background) */
 .modal {
   display: none; /* Hidden by default */
@@ -48,6 +54,14 @@
 .article-container {
   display: flex;
   flex-direction: column;
+}
+
+article {
+  padding: 0 1rem;
+}
+
+.img-responsive {
+  width: 100%;;
 }
 
 @media screen and (min-width: 768px) {
