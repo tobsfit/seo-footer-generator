@@ -248,7 +248,9 @@
         // copy markup
         document.querySelector('#copy-content-clipboard').addEventListener('click', () => {
           console.log('copy-content-clipboard');
-          copySurfooterMarkup(document.getElementById("#clipboard").innerHTML);
+          
+          var clipboardContent = document.getElementById("clipboard").innerHTML;
+          copySurfooterMarkup(clipboardContent);
 
           function copySurfooterMarkup(str) {
             function listener(e) {
