@@ -9,15 +9,27 @@ var ImageHandler = /** @class */ (function () {
         var _this = this;
         this.allImages.forEach(function (element) {
             element.addEventListener('click', function (img) {
-                console.log(img.target);
                 _this.openModal(img.target);
             });
         });
     };
     ImageHandler.prototype.openModal = function (img) {
+        var _this = this;
+        console.log(img);
         var modal = document.getElementById("image-modal");
-        var close = document.querySelector(".close");
         modal.style.display = "block";
+        var close = document.querySelector(".close");
+        var modalAlt = modal.querySelector('#form-image--alt');
+        var modalUrl = modal.querySelector('#form-image--url');
+        modalAlt.value = img.alt;
+        modalUrl.value = img.src;
+        var form = document.querySelector('#form-image').addEventListener('submit', function (form) {
+            form.preventDefault();
+            _this.closeModalUpdateImage(form);
+        });
+    };
+    ImageHandler.prototype.closeModalUpdateImage = function (form) {
+        console.log(form);
     };
     return ImageHandler;
 }());

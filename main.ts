@@ -12,16 +12,29 @@ class ImageHandler {
   attachEventListener() {
     this.allImages.forEach(element => {
       element.addEventListener('click', (img) => {
-        console.log(img.target);
         this.openModal(img.target);
       });
     });
   }
 
   openModal(img) {
+    console.log(img);
     const modal: HTMLElement = document.getElementById("image-modal");
-    const close: HTMLElement = document.querySelector(".close");
     modal.style.display = "block";
+    const close: HTMLElement = document.querySelector(".close");
+    const modalAlt: HTMLInputElement = modal.querySelector('#form-image--alt');
+    const modalUrl: HTMLInputElement = modal.querySelector('#form-image--url');
+    modalAlt.value = img.alt;
+    modalUrl.value = img.src;
+    
+    const form = document.querySelector('#form-image').addEventListener('submit', (form) => {
+      form.preventDefault();
+      this.closeModalUpdateImage(form);
+    });
+  }
+
+  closeModalUpdateImage(form) {
+    console.log(form);
   }
 }
 
