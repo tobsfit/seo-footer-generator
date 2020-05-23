@@ -59,23 +59,4 @@ window.addEventListener('load', function () {
     // Stop the autosave
     clearInterval(this.autoSaveTimer);
   });
-
-  // copy markup
-  document.querySelector('#copy-content-clipboard').addEventListener('click', () => {
-    console.log('copy-content-clipboard');
-    var clipboardContent = document.getElementById("clipboard").innerHTML;
-    copySurfooterMarkup(clipboardContent);
-
-    function copySurfooterMarkup(str) {
-      function listener(e) {
-        e.clipboardData.setData('text/html', str);
-        e.clipboardData.setData('text/plain', str);
-        e.preventDefault();
-      }
-      document.addEventListener('copy', listener);
-      document.execCommand('copy');
-      document.removeEventListener('copy', listener);
-    }
-  });
-
 });
