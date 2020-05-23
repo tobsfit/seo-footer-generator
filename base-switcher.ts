@@ -1,7 +1,8 @@
 document.querySelector('#base').addEventListener('change', (e) => {
   let content: string;
-  const switcher: HTMLElement = e.target;
-  if (switcher.value == 1) {
+  const switcher: EventTarget = e.target;
+  const switcherValue: string = (switcher as HTMLInputElement).value;
+  if (switcherValue == '1') {
     content = `<object data="https://tobsfit.github.io/surfooter-generator/simple-surfooter.html"></object>`;
   } else {
     content = `
