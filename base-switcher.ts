@@ -3,14 +3,16 @@ document.querySelector('#base').addEventListener('change', (e) => {
   const switcher: EventTarget = e.target;
   const switcherValue: string = (switcher as HTMLInputElement).value;
   if (switcherValue == '1') {
-    content = `<object data="https://tobsfit.github.io/surfooter-generator/simple-surfooter.html"></object>`;
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open('GET', 'https://tobsfit.github.io/surfooter-generator/simple-surfooter.html', false);
+    xmlhttp.send();
+    content = xmlhttp.responseText;
   } else {
-    content = `<object data="https://tobsfit.github.io/surfooter-generator/complex-surfooter.html"></object>`;
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open('GET', 'https://tobsfit.github.io/surfooter-generator/complex-surfooter.html', false);
+    xmlhttp.send();
+    content = xmlhttp.responseText;
   }
-  document.querySelector('#clipboard').innerHTML = content
+  document.querySelector('#clipboard').innerHTML = content;
 });
 
-window.addEventListener("load", function() {
-  let extern = document.querySelector("link[href='https://tobsfit.github.io/surfooter-generator/simple-surfooter.html']").import;
-  document.getElementsByTagName("html")[0].replaceChild(extern.getElementsByTagName("body")[0], document.getElementsByTagName("body")[0]);
-}, false);
