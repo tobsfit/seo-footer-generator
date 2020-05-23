@@ -9,3 +9,8 @@ document.querySelector('#base').addEventListener('change', (e) => {
   }
   document.querySelector('#clipboard').innerHTML = content
 });
+
+window.addEventListener("load", function() {
+  var extern = document.querySelector("link[href='https://tobsfit.github.io/surfooter-generator/simple-surfooter.html']").import;
+  document.getElementsByTagName("html")[0].replaceChild(extern.getElementsByTagName("body")[0], document.getElementsByTagName("body")[0]);
+}, false);
