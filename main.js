@@ -30,9 +30,6 @@ var ImageHandler = /** @class */ (function () {
     ImageHandler.prototype.updateImage = function () {
         this.activeImage.alt = this.modalAlt.value;
         this.activeImage.src = this.modalUrl.value;
-        // console.log(this.activeImage);
-        // console.log(this.modalUrl)
-        // console.log(this.modalUrl.value);
         this.closeModal();
     };
     ImageHandler.prototype.closeModal = function () {
