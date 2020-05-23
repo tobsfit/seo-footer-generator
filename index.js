@@ -1,13 +1,10 @@
 window.addEventListener('load', function () {
   var editor;
-
   ContentTools.StylePalette.add([
     new ContentTools.Style('Author', 'author', ['p'])
   ]);
-
   editor = ContentTools.EditorApp.get();
   editor.init('*[data-editable]', 'data-name');
-
   editor.addEventListener('saved', function (ev) {
     var name, payload, regions;
     // Check that something changed
@@ -81,42 +78,6 @@ window.addEventListener('load', function () {
       document.removeEventListener('copy', listener);
     }
   });
-
-  // insert images
-  var editableImages = document.querySelectorAll('[data-editable-image]')
-  editableImages.forEach(function (elem, index) {
-    elem.addEventListener('click', (e) => {
-      var currentImage = e.target;
-      console.log(currentImage)
-      var modal = document.getElementById("image-modal");
-      var btn = currentImage;
-      var close = document.getElementsByClassName("close")[0];
-      modal.style.display = "block";
-      // close modal
-      close.onclick = function () {
-        modal.style.display = "none";
-      }
-      window.onclick = function (event) {
-        if (event.target == modal) {
-          modal.style.display = "none";
-        }
-      }
-      // submit form
-      document.querySelector('#form-image').addEventListener('submit', (formData) => {
-        console.log(formData);
-        closeModal(currentImage);
-        e.preventDefault();
-      });
-
-      function closeModal(image) {
-        image.alt = document.querySelector('#form-image--alt').value;
-        image.src = document.querySelector('#form-image--url').value;
-        modal.style.display = "none";
-      }
-
-    });
-  });
-
 
 
   document.querySelector('#base').addEventListener('change', (e) => {

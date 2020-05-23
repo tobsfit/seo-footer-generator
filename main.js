@@ -1,67 +1,43 @@
-var message = 'hello world';
-console.log(message);
 var ImageHandler = /** @class */ (function () {
     function ImageHandler(image) {
         this.image = image;
         this.allImages = image;
+        this.modal = document.getElementById("image-modal");
+        this.modalAlt = this.modal.querySelector('#form-image--alt');
+        this.modalUrl = this.modal.querySelector('#form-image--url');
     }
     ImageHandler.prototype.attachEventListener = function () {
         var _this = this;
         this.allImages.forEach(function (element) {
             element.addEventListener('click', function (img) {
-                _this.openModal(img.target);
+                _this.activeImage = img.target;
+                _this.openModal();
             });
         });
     };
-    ImageHandler.prototype.openModal = function (img) {
+    ImageHandler.prototype.openModal = function () {
         var _this = this;
-        console.log(img);
-        var modal = document.getElementById("image-modal");
-        modal.style.display = "block";
+        this.modal.style.display = "block";
         var close = document.querySelector(".close");
-        var modalAlt = modal.querySelector('#form-image--alt');
-        var modalUrl = modal.querySelector('#form-image--url');
-        modalAlt.value = img.alt;
-        modalUrl.value = img.src;
+        this.modalAlt.value = this.activeImage.alt;
+        this.modalUrl.value = this.activeImage.src;
+        // submit form
         var form = document.querySelector('#form-image').addEventListener('submit', function (form) {
             form.preventDefault();
-            _this.closeModalUpdateImage(form);
+            _this.updateImage();
         });
     };
-    ImageHandler.prototype.closeModalUpdateImage = function (form) {
-        console.log(form);
-        var formData = new FormData(form);
-        console.log(formData);
+    ImageHandler.prototype.updateImage = function () {
+        this.activeImage.alt = this.modalAlt.value;
+        this.activeImage.src = this.modalUrl.value;
+        // console.log(this.activeImage);
+        // console.log(this.modalUrl)
+        // console.log(this.modalUrl.value);
+        this.closeModal();
+    };
+    ImageHandler.prototype.closeModal = function () {
+        this.modal.style.display = "none";
     };
     return ImageHandler;
 }());
 var images = new ImageHandler(document.querySelectorAll('[data-editable-image]')).attachEventListener();
-// editableImages.forEach(function (elem, index) {
-//   elem.addEventListener('click', (e) => {
-//     var currentImage = e.target;
-//     console.log(currentImage)
-//     var modal = document.getElementById("image-modal");
-//     var btn = currentImage;
-//     var close = document.getElementsByClassName("close")[0];
-//     modal.style.display = "block";
-//     // close modal
-//     close.onclick = function () {
-//       modal.style.display = "none";
-//     }
-//     window.onclick = function (event) {
-//       if (event.target == modal) {
-//         modal.style.display = "none";
-//       }
-//     }
-//     // submit form
-//     document.querySelector('#form-image').addEventListener('submit', (formData) => {
-//       console.log(formData);
-//       closeModal(currentImage);
-//       e.preventDefault();
-//     });
-//     function closeModal(image) {
-//       image.alt = document.querySelector('#form-image--alt').value;
-//       image.src = document.querySelector('#form-image--url').value;
-//       modal.style.display = "none";
-//     }
-//   });
