@@ -1,5 +1,6 @@
 document.querySelector('#base').addEventListener('change', (e) => {
   let content: string;
+  const numColumns: string = (document.querySelector('#num-columns') as HTMLInputElement).value;
   const switcher: EventTarget = e.target;
   const switcherValue: string = (switcher as HTMLInputElement).value;
   if (switcherValue == '1') {
@@ -9,7 +10,7 @@ document.querySelector('#base').addEventListener('change', (e) => {
     content = xmlhttp.responseText;
   } else {
     var xmlhttp = new XMLHttpRequest();
-    xmlhttp.open('GET', 'https://tobsfit.github.io/surfooter-generator/complex-surfooter.html', false);
+    xmlhttp.open('GET', `https://tobsfit.github.io/surfooter-generator/complex-surfooter-${numColumns}.html`, false);
     xmlhttp.send();
     content = xmlhttp.responseText;
   }
