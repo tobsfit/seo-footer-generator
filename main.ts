@@ -35,6 +35,8 @@ class ImageHandler {
 
   closeModalUpdateImage(form) {
     console.log(form);
+    const formData = new FormData(form)
+    console.log(formData);
   }
 }
 

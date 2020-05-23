@@ -30,6 +30,8 @@ var ImageHandler = /** @class */ (function () {
     };
     ImageHandler.prototype.closeModalUpdateImage = function (form) {
         console.log(form);
+        var formData = new FormData(form);
+        console.log(formData);
     };
     return ImageHandler;
 }());
