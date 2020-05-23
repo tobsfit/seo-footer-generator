@@ -63,7 +63,6 @@ window.addEventListener('load', function () {
   // copy markup
   document.querySelector('#copy-content-clipboard').addEventListener('click', () => {
     console.log('copy-content-clipboard');
-
     var clipboardContent = document.getElementById("clipboard").innerHTML;
     copySurfooterMarkup(clipboardContent);
 
