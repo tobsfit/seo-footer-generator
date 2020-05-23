@@ -14,5 +14,6 @@ document.querySelector('#base').addEventListener('change', (e) => {
     content = xmlhttp.responseText;
   }
   document.querySelector('#clipboard').innerHTML = content;
+  console.log('insert content from switcher');
 });
 
