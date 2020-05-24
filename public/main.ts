@@ -1,3 +1,9 @@
+import Copy from './copy';
+import Switcher from './base-switcher';
+
+Copy();
+Switcher();
+
 class ImageHandler {
   allImages: NodeListOf<Element>;
   activeImage: any;

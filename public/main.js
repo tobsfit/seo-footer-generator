@@ -1,3 +1,9 @@
+"use strict";
+exports.__esModule = true;
+var copy_1 = require("./copy");
+var base_switcher_1 = require("./base-switcher");
+copy_1["default"]();
+base_switcher_1["default"]();
 var ImageHandler = /** @class */ (function () {
     function ImageHandler(image) {
         this.image = image;
