@@ -1,5 +1,5 @@
 // copy markup
-export default function () {
+export function copy() {
   document.querySelector('#copy-content-clipboard').addEventListener('click', () => {
     console.log('copy-content-clipboard');
     var clipboardContent = document.getElementById("clipboard").innerHTML;

@@ -1,8 +1,9 @@
-import Copy from './copy';
-import Switcher from './base-switcher';
+import { copy } from './copy';
+import { switcher } from './base-switcher';
 
-Copy();
-Switcher();
+copy();
+switcher();
+
 
 class ImageHandler {
   allImages: NodeListOf<Element>;
@@ -10,14 +11,14 @@ class ImageHandler {
   modal: HTMLElement;
   modalAlt: HTMLInputElement;
   modalUrl: HTMLInputElement;
-  
+
   constructor(public image: NodeListOf<Element>) {
     this.allImages = image;
     this.modal = document.getElementById("image-modal");
     this.modalAlt = this.modal.querySelector('#form-image--alt');
     this.modalUrl = this.modal.querySelector('#form-image--url');
   }
-  
+
   attachEventListener() {
     this.allImages.forEach(element => {
       element.addEventListener('click', (img) => {
@@ -32,7 +33,7 @@ class ImageHandler {
     const close: HTMLElement = document.querySelector(".close");
     this.modalAlt.value = this.activeImage.alt;
     this.modalUrl.value = this.activeImage.src;
-    
+
     // submit form
     const form = document.querySelector('#form-image').addEventListener('submit', (form) => {
       form.preventDefault();

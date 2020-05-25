@@ -1,7 +1,8 @@
 "use strict";
 exports.__esModule = true;
+exports.copy = void 0;
 // copy markup
-function default_1() {
+function copy() {
     document.querySelector('#copy-content-clipboard').addEventListener('click', function () {
         console.log('copy-content-clipboard');
         var clipboardContent = document.getElementById("clipboard").innerHTML;
@@ -20,4 +21,4 @@ function default_1() {
         }
     });
 }
-exports["default"] = default_1;
+exports.copy = copy;

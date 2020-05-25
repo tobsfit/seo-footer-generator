@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/tobsfit/surfooter-generator#readme",
   "dependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.9.6",
     "express": "^4.17.1",
     "nodemon": "^2.0.4"
   }

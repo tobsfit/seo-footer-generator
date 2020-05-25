@@ -2,8 +2,8 @@
 exports.__esModule = true;
 var copy_1 = require("./copy");
 var base_switcher_1 = require("./base-switcher");
-copy_1["default"]();
-base_switcher_1["default"]();
+copy_1.copy();
+base_switcher_1.switcher();
 var ImageHandler = /** @class */ (function () {
     function ImageHandler(image) {
         this.image = image;

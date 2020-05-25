@@ -1,4 +1,4 @@
-export default function () {
+export function switcher() {
   document.querySelector('#base').addEventListener('change', (e) => {
     updateContent();
   });

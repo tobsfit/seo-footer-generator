@@ -1,6 +1,7 @@
 "use strict";
 exports.__esModule = true;
-function default_1() {
+exports.switcher = void 0;
+function switcher() {
     document.querySelector('#base').addEventListener('change', function (e) {
         updateContent();
     });
@@ -30,4 +31,4 @@ function default_1() {
         console.log('insert content from switcher');
     }
 }
-exports["default"] = default_1;
+exports.switcher = switcher;
