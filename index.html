@@ -57,7 +57,7 @@
         <button id="insert-html__submit" type="button">Insert</button>
       </form>
     </aside>
-    
+
     <aside>
       <form id="insert-global-class" name="insert-global-class" method="POST">
         <label for="insert-global-class__input">Insert global class:</label><br>
@@ -73,33 +73,61 @@
     <main>
       <div id="clipboard">
         <style>
-          .article-container {
+          .surfooter h3 {
+            font-size: 1.75rem;
+            font-weight: bold;
+            margin: 2rem 0 1.25rem;
+            color: #323233;
+          }
+
+          .surfooter h4 {
+            font-size: 1.65rem;
+            font-weight: normal;
+            margin: 0.75rem 0 1.25rem;
+            color: #323233;
+          }
+
+          .surfooter h5 {
+            font-size: 1.55rem;
+            font-weight: normal;
+            margin: 0.75rem 0 1.25rem;
+            color: #323233;
+          }
+
+          .surfooter p {
+            font-size: 1.3rem;
+            color: #323233;
+            margin: 2rem 0 1rem;
+          }
+
+          /* article styling */
+          .surfooter .article-container {
             display: flex;
             flex-direction: column;
           }
 
-          article {
+          .surfooter article {
             padding: 0;
           }
 
-          article:first-child {
+          .surfooter article:first-child {
             padding-left: 0;
           }
 
-          article:last-child {
+          .surfooter article:last-child {
             padding-right: 0;
           }
 
-          .img-responsive {
+          .surfooter .img-responsive {
             width: 100%;
           }
 
           @media screen and (min-width: 768px) {
-            .article-container {
+            .surfooter .article-container {
               flex-direction: row;
             }
 
-            article {
+            .surfooter article {
               padding: 0 1rem;
             }
           }
@@ -217,18 +245,17 @@
               </p>
             </article>
           </section>
+          <section data-editable="">
+            <h3>Lorem ipsum dolor sit amet</h3>
+            <h4>Quam lacus suspendisse faucibus interdum posuere lorem</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+              dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+              ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+              fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+              mollit anim id est laborum.</p>
+          </section>
         </div>
-        </section>
 
-        <section data-editable="">
-          <h3>Lorem ipsum dolor sit amet</h3>
-          <h4>Quam lacus suspendisse faucibus interdum posuere lorem</h4>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-            ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-            fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum.</p>
-        </section>
       </div><!-- End Clipboard -->
     </main>
 
@@ -237,11 +264,10 @@
       src="https://tobsfit.github.io/surfooter-generator/content-tools/content-tools.min.js">
     </script>
     <script type="text/javascript" src="https://tobsfit.github.io/surfooter-generator/index.js"></script>
-    <!-- <script type="text/javascript" src="https://tobsfit.github.io/surfooter-generator/main.js"></script> -->
+    <!-- <script type="text/javascript" src="https://tobsfit.github.io/surfooter-generator/public/main.js"></script> -->
 
     <!-- local dev -->
-    <script>var exports = {};</script>
-    <script type="text/javascript" src="./public/main.js"></script>
+    <script type="text/javascript" src="main.js"></script>
   </div>
 </body>
 
