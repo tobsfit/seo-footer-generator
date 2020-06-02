@@ -79,7 +79,7 @@ function updateContent() {
     xmlhttp.send();
     content = xmlhttp.responseText;
   }
-  document.querySelector('#clipboard').innerHTML = content;
+  document.querySelector('.surfooter').innerHTML = content;
   console.log('insert content from switcher');
 }
 
@@ -100,6 +100,7 @@ document.querySelector('#copy-content-clipboard').addEventListener('click', () =
     function listener(e) {
       e.clipboardData.setData('text/html', markup);
       e.clipboardData.setData('text/plain', markup);
+      showAlert('Surfooter Code was copied.');
       e.preventDefault();
     }
   }
@@ -112,3 +113,46 @@ document.querySelector('#insert-html__submit').addEventListener('click', (e) => 
   let textareaContent: string = textarea.value;
   textarea.value.indexOf('data-editable=""') == -1 ? clipboard.innerHTML = `<div data-editable="">${textarea.value}</div>` : clipboard.innerHTML = textarea.value;
 });
+
+// insert faq section
+document.querySelector('#seo-faqs').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const form: EventTarget = e.target;
+  const textforms: NodeList = (form as HTMLFormElement).querySelectorAll('.seo-faq');
+  let finalFAQs = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": []
+  };
+  textforms.forEach(faq => {
+    const question: string = (faq as HTMLElement).querySelector<HTMLTextAreaElement>('.seo-faq__question').value.trim();
+    const answer: string = (faq as HTMLElement).querySelector<HTMLTextAreaElement>('.seo-faq__answer').value.trim();
+    // console.log((element as HTMLTextAreaElement).value);
+    const singleFAQ = {
+      "@type": "Question",
+      "name": question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": answer
+      }
+    };
+    finalFAQs.mainEntity.push(singleFAQ)
+  });
+  // append script tag to clipboard
+  var script = document.createElement('script');
+  script.type = 'application/ld+json';
+  script.innerHTML = JSON.stringify(finalFAQs);
+  document.querySelector('#clipboard').appendChild(script);
+  // Show alert
+  showAlert('SEO FAQs are added to the surfooter code.');
+});
+
+
+const showAlert = (message) => {
+  document.querySelector<HTMLElement>('.alert').classList.add("animate");
+  document.querySelector<HTMLElement>('.alert').querySelector('p').innerHTML = message;
+  setTimeout(() => {
+    document.querySelector<HTMLElement>('.alert').classList.remove("animate");
+    document.querySelector<HTMLElement>('.alert').querySelector('p').innerHTML = '';
+  }, 7000);
+}

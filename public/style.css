@@ -5,13 +5,14 @@ html {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   font-size: 62.5%;
-  font-size: .625em;
+  font-size: 0.625em;
   list-style-position: inside;
 }
 
 body {
   margin: 0;
-  font-family: Helvetica,Helvetica Neue,Roboto,Arial,Microsoft Yahei,"\5FAE\8F6F\96C5\9ED1",SimSun,"\5B8B\4F53",sans-serif;
+  font-family: Helvetica, Helvetica Neue, Roboto, Arial, Microsoft Yahei,
+    "\5FAE\8F6F\96C5\9ED1", SimSun, "\5B8B\4F53", sans-serif;
   font-weight: 400;
   font-style: normal;
   font-size: 14px;
@@ -72,11 +73,11 @@ body {
 
 aside {
   display: block;
-  box-shadow: 0 0 10px rgba(33,33,33,0.1);
+  box-shadow: 0 0 10px rgba(33, 33, 33, 0.1);
+  padding: 1rem 2rem 3rem;
   margin: 1rem 0;
-  padding: 1rem;
-  border: 1px solid rgba(33,33,33, 0.15);
-  width: 100%
+  border: 1px solid rgba(33, 33, 33, 0.15);
+  width: 100%;
 }
 
 textarea {
@@ -84,4 +85,77 @@ textarea {
   max-width: 100%;
   width: 100%;
   min-height: 150px;
+  border-radius: 1rem;
 }
+
+textarea:focus {
+  outline-color: #2cc36b;
+  border-radius: 1rem;
+  font-family: Helvetica, Helvetica Neue, Roboto, Arial, Microsoft Yahei,
+    "\5FAE\8F6F\96C5\9ED1", SimSun, "\5B8B\4F53", sans-serif;
+}
+
+.seo-faq__question {
+  min-height: 40px;
+}
+
+.surfooter-button {
+  background: #2cc36b;
+  border: 0;
+  padding: 0.75rem 1.75rem;
+  margin: 1rem 0;
+  color: white;
+  border-radius: 10px;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.25);
+}
+
+a,
+a:hover,
+a:active {
+  color: #2cc36b;
+  text-decoration: none;
+}
+
+.alert {
+  display: none;
+  flex-direction: row;
+  position: sticky;
+  top: 0;
+  box-shadow: 0 0 10px rgba(33, 33, 33, 0.1);
+  padding: 0.15rem 2rem;
+  border: 1px solid rgba(33, 33, 33, 0.15);
+  width: 100%;
+  background-color: #2cc36b;
+  color: white;
+  justify-content: center;
+}
+
+.alert__close {
+  position: absolute;
+  transform: translateY(-50%);
+  right: 2rem;
+  top: 50%;
+}
+
+.alert__close span {
+  color: white;
+}
+
+/* The animation code */
+@keyframes topdown {
+  0%{ 
+    top: -300px; 
+    opacity: 0;
+  }
+  100% { 
+    top 0; 
+    opacity: 1;
+  }
+}
+
+.alert.animate {
+  animation-name: topdown;
+  animation-duration: 2s;
+  display: flex;
+}
+
