@@ -7,13 +7,12 @@
   <title>SEO Template</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- content tools -->
-  <!-- XXXXX -->
   <link href="https://tobsfit.github.io/surfooter-generator/content-tools/content-tools.min.css" rel="stylesheet">
-  <!-- Page Styles -->
-  <link href="https://tobsfit.github.io/surfooter-generator/public/style.css" rel="stylesheet">
+  <!-- GitHub Styles -->
+  <!-- <link href="https://tobsfit.github.io/surfooter-generator/public/style.css" rel="stylesheet"> -->
+
   <!-- local dev -->
-  <!-- <link href="style.css" rel="stylesheet"> -->
+  <link href="style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -75,30 +74,34 @@
             <textarea class="seo-faq__question">Question 1</textarea>
             <textarea class="seo-faq__answer"
               name="seo-faq__q1">Quis nostrud exercitation ullamco laboris nisi ut aliquip.</textarea>
+            <button class="seo-faq__remove">X</button>
           </div>
           <hr>
           <!-- question -->
           <div class="seo-faq">
             <textarea class="seo-faq__question">Question 2</textarea>
-            <textarea class="seo-faq__answer" name="seo-faq__q2">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-              fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-              mollit anim id est laborum.</textarea>
+            <textarea class="seo-faq__answer"
+              name="seo-faq__q2">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea>
+            <button class="seo-faq__remove">X</button>
+            <hr>
           </div>
-          <hr>
           <!-- question -->
           <div class="seo-faq">
             <textarea class="seo-faq__question">Question 3</textarea>
-            <textarea class="seo-faq__answer" name="seo-faq__q3">Aliquip exea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-              dolore eu</textarea>
+            <textarea class="seo-faq__answer"
+              name="seo-faq__q3">Aliquip exea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu</textarea>
+            <button class="seo-faq__remove">X</button>
+            <hr>
           </div>
-          <hr>
           <!-- question -->
           <div class="seo-faq">
             <textarea class="seo-faq__question">Question 4</textarea>
-            <textarea class="seo-faq__answer" name="seo-faq__q4">consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-              dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-              aliquip exea commodo consequat.</textarea>
+            <textarea class="seo-faq__answer"
+              name="seo-faq__q4">consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim adminim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip exea commodo consequat.</textarea>
+            <button class="seo-faq__remove">X</button>
+            <hr>
           </div>
+          <button id="seo-faqs__more" class="surfooter-button">Add more questions</button>
           <button id="seo-faqs__submit" type="submit" class="surfooter-button">Add FAQ content</button>
         </form>
     </aside>
@@ -109,7 +112,6 @@
         <button id="insert-global-class__input__submit" type="button">Insert</button>
       </form>
     </aside> -->
-
     <main>
       <div id="clipboard">
         <style>
@@ -138,6 +140,16 @@
             font-size: 1.3rem;
             color: #323233;
             margin: 2rem 0 1rem;
+          }
+
+          .surfooter .scrollable-table {
+            overflow-x: auto;
+          }
+
+          .surfooter table {
+            width: 100%;
+            text-align: left;
+            padding: 1rem 0
           }
 
           /* article styling */
@@ -294,10 +306,72 @@
               fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
               mollit anim id est laborum.</p>
           </section>
+          <section data-editable="">
+            <table>
+              <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Points</th>
+                <th>Points</th>
+                <th>Points</th>
+                <th>Points</th>
+                <th>Points</th>
+                <th>Points</th>
+                <th>Points</th>
+                <th>Points</th>
+                <th>Points</th>
+                <th>Points</th>
+              </tr>
+              <tr>
+                <td>Jill</td>
+                <td>Smith</td>
+                <td>50</td>
+                <td>50</td>
+                <td>50</td>
+                <td>50</td>
+                <td>50</td>
+                <td>50</td>
+                <td>50</td>
+                <td>50</td>
+                <td>50</td>
+                <td>50</td>
+              </tr>
+              <tr>
+                <td>Eve</td>
+                <td>Jackson</td>
+                <td>94</td>
+                <td>94</td>
+                <td>94</td>
+                <td>94</td>
+                <td>94</td>
+                <td>94</td>
+                <td>94</td>
+                <td>94</td>
+                <td>94</td>
+                <td>94</td>
+              </tr>
+              <tr>
+                <td>Adam</td>
+                <td>Johnson</td>
+                <td>67</td>
+                <td>67</td>
+                <td>67</td>
+                <td>67</td>
+                <td>67</td>
+                <td>67</td>
+                <td>67</td>
+                <td>67</td>
+                <td>67</td>
+                <td>67</td>
+              </tr>
+            </table>
+          </section>
         </div>
-
+        <code id="surfooter__seo-faqs-preview" lang="html5"></code>
       </div><!-- End Clipboard -->
     </main>
+
+
     <button id="copy-content-clipboard" type="button" class="surfooter-button">Copy surfooter and FAQs to
       clipboard</button>
   </div>
@@ -306,11 +380,13 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js"></script>
   <script type="text/javascript" src="https://tobsfit.github.io/surfooter-generator/content-tools/content-tools.min.js">
   </script>
-  <!-- repo scripts -->
   <script type="text/javascript" src="https://tobsfit.github.io/surfooter-generator/index.js"></script>
-  <script type="text/javascript" src="https://tobsfit.github.io/surfooter-generator/public/main.js"></script>
+
+  <!-- node script -->
+  <!-- <script type="text/javascript" src="https://tobsfit.github.io/surfooter-generator/public/main.js"></script> -->
+
   <!-- local dev -->
-  <!-- <script type="text/javascript" src="main.js"></script> -->
+  <script type="text/javascript" src="main.js"></script>
   </div>
 </body>
 

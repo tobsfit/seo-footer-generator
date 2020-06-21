@@ -56,6 +56,7 @@ let images = new ImageHandler(document.querySelectorAll('[data-editable-image]')
 document.querySelector('#base').addEventListener('change', (e) => {
   updateContent();
 });
+
 document.querySelector('#num-columns').addEventListener('change', (e) => {
   updateContent();
 });
@@ -67,32 +68,34 @@ function updateContent() {
   const switcher: number = parseInt((document.querySelector('#base') as HTMLInputElement).value);
 
   if (switcher == 1) {
-    var xmlhttp = new XMLHttpRequest();
+    let xmlhttp = new XMLHttpRequest();
     xmlhttp.open('GET', 'https://tobsfit.github.io/surfooter-generator/simple-surfooter.html', false);
     xmlhttp.send();
     content = xmlhttp.responseText;
     columnWrapper.style.display = "none";
   } else {
     columnWrapper.style.display = "block";
-    var xmlhttp = new XMLHttpRequest();
+    let xmlhttp = new XMLHttpRequest();
     xmlhttp.open('GET', `https://tobsfit.github.io/surfooter-generator/complex-surfooter-${numColumns}.html`, false);
     xmlhttp.send();
     content = xmlhttp.responseText;
   }
   document.querySelector('.surfooter').innerHTML = content;
-  console.log('insert content from switcher');
+  // console.log('insert content from switcher');
 }
 
 // Copy Code
 document.querySelector('#copy-content-clipboard').addEventListener('click', () => {
-  console.log('copy-content-clipboard');
-  var clipboardContent = document.getElementById("clipboard").innerHTML;
+  var clipboardContent = document.getElementById('clipboard').innerHTML;
   copySurfooterMarkup(clipboardContent);
 
   function copySurfooterMarkup(str) {
     let markup = str
-    markup = markup.replace(/ data-editable=""/g, '').replace(/ data-editable-image=""/g, '');
-
+    markup = markup
+      .replace(/ data-editable=""/g, '')
+      .replace(/ data-editable-image=""/g, '')
+      .replace(/<code id="surfooter__seo-faqs-preview" lang="html5">/g, '<script type="application/ld+json">')
+      .replace(/<\/code>/g, '</script>');
     document.addEventListener('copy', listener);
     document.execCommand('copy');
     document.removeEventListener('copy', listener);
@@ -138,15 +141,39 @@ document.querySelector('#seo-faqs').addEventListener('submit', (e) => {
     };
     finalFAQs.mainEntity.push(singleFAQ)
   });
-  // append script tag to clipboard
-  var script = document.createElement('script');
-  script.type = 'application/ld+json';
-  script.innerHTML = JSON.stringify(finalFAQs);
-  document.querySelector('#clipboard').appendChild(script);
+  const scriptString =  JSON.stringify(finalFAQs);
+  // insert preview
+  document.querySelector('#surfooter__seo-faqs-preview').innerHTML = scriptString;
   // Show alert
   showAlert('SEO FAQs are added to the surfooter code.');
 });
 
+document.querySelector('#seo-faqs__more').addEventListener('click', (e) => {
+  const addMore: EventTarget = e.target;
+  const form: HTMLElement = document.querySelector('#seo-faqs');
+  const textforms: NodeList = (form as HTMLFormElement).querySelectorAll('.seo-faq');
+  const newQuestionNumber = textforms.length + 1;
+  const newQuestion = `
+  <!-- question -->
+  <div class="seo-faq">
+  <textarea class="seo-faq__question">Question ${newQuestionNumber}</textarea>
+    <textarea class="seo-faq__answer" name="seo-faq__q${newQuestionNumber}">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea>
+    <button class="seo-faq__remove">X</button>
+    <hr>
+  </div>`;
+  (addMore as HTMLElement).insertAdjacentHTML('beforebegin', newQuestion);
+});
+
+// Remove SEO Item
+const allRemoveButtons = document.querySelectorAll('.seo-faq__remove');
+allRemoveButtons.forEach((removeButton) => {
+  removeButton.addEventListener('click', removeSeoQuestion);
+});
+
+function removeSeoQuestion() {
+  const currentItem: HTMLElement = this.closest('.seo-faq');
+  currentItem.remove();
+}
 
 const showAlert = (message) => {
   document.querySelector<HTMLElement>('.alert').classList.add("animate");

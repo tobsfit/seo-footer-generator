@@ -65,16 +65,19 @@ function updateContent() {
         content = xmlhttp.responseText;
     }
     document.querySelector('.surfooter').innerHTML = content;
-    console.log('insert content from switcher');
+    // console.log('insert content from switcher');
 }
 // Copy Code
 document.querySelector('#copy-content-clipboard').addEventListener('click', function () {
-    console.log('copy-content-clipboard');
-    var clipboardContent = document.getElementById("clipboard").innerHTML;
+    var clipboardContent = document.getElementById('clipboard').innerHTML;
     copySurfooterMarkup(clipboardContent);
     function copySurfooterMarkup(str) {
         var markup = str;
-        markup = markup.replace(/ data-editable=""/g, '').replace(/ data-editable-image=""/g, '');
+        markup = markup
+            .replace(/ data-editable=""/g, '')
+            .replace(/ data-editable-image=""/g, '')
+            .replace(/<code id="surfooter__seo-faqs-preview" lang="html5">/g, '<script type="application/ld+json">')
+            .replace(/<\/code>/g, '</script>');
         document.addEventListener('copy', listener);
         document.execCommand('copy');
         document.removeEventListener('copy', listener);
@@ -117,14 +120,29 @@ document.querySelector('#seo-faqs').addEventListener('submit', function (e) {
         };
         finalFAQs.mainEntity.push(singleFAQ);
     });
-    // append script tag to clipboard
-    var script = document.createElement('script');
-    script.type = 'application/ld+json';
-    script.innerHTML = JSON.stringify(finalFAQs);
-    document.querySelector('#clipboard').appendChild(script);
+    var scriptString = JSON.stringify(finalFAQs);
+    // insert preview
+    document.querySelector('#surfooter__seo-faqs-preview').innerHTML = scriptString;
     // Show alert
     showAlert('SEO FAQs are added to the surfooter code.');
 });
+document.querySelector('#seo-faqs__more').addEventListener('click', function (e) {
+    var addMore = e.target;
+    var form = document.querySelector('#seo-faqs');
+    var textforms = form.querySelectorAll('.seo-faq');
+    var newQuestionNumber = textforms.length + 1;
+    var newQuestion = "\n  <!-- question -->\n  <div class=\"seo-faq\">\n  <textarea class=\"seo-faq__question\">Question " + newQuestionNumber + "</textarea>\n    <textarea class=\"seo-faq__answer\" name=\"seo-faq__q" + newQuestionNumber + "\">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea>\n    <button class=\"seo-faq__remove\">X</button>\n    <hr>\n  </div>";
+    addMore.insertAdjacentHTML('beforebegin', newQuestion);
+});
+// Remove SEO Item
+var allRemoveButtons = document.querySelectorAll('.seo-faq__remove');
+allRemoveButtons.forEach(function (removeButton) {
+    removeButton.addEventListener('click', removeSeoQuestion);
+});
+function removeSeoQuestion() {
+    var currentItem = this.closest('.seo-faq');
+    currentItem.remove();
+}
 var showAlert = function (message) {
     document.querySelector('.alert').classList.add("animate");
     document.querySelector('.alert').querySelector('p').innerHTML = message;

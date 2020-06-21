@@ -95,8 +95,13 @@ textarea:focus {
     "\5FAE\8F6F\96C5\9ED1", SimSun, "\5B8B\4F53", sans-serif;
 }
 
+.seo-faq {
+  position: relative;
+}
+
 .seo-faq__question {
-  min-height: 40px;
+  min-height: 4rem;
+  margin-top: 3rem;
 }
 
 .surfooter-button {
@@ -107,6 +112,13 @@ textarea:focus {
   color: white;
   border-radius: 10px;
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.25);
+}
+
+.seo-faq__remove {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: tomato;
 }
 
 a,
