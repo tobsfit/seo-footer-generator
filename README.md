@@ -1,7 +1,8 @@
-# surfooter
+# Surfooter and SEO Content Tool
 
 Used packages:
 
-- https://placeholder.com/
-- http://getcontenttools.com/getting-started
-- https://clipboardjs.com/
+- [placeholder images](https://placeholder.com/)
+- [editorjs.io](https://github.com/codex-team/editor.js)
+- [clipboardjs](https://clipboardjs.com/ )
+  

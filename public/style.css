@@ -11,8 +11,6 @@ html {
 
 body {
   margin: 0;
-  font-family: Helvetica, Helvetica Neue, Roboto, Arial, Microsoft Yahei,
-    "\5FAE\8F6F\96C5\9ED1", SimSun, "\5B8B\4F53", sans-serif;
   font-weight: 400;
   font-style: normal;
   font-size: 14px;
@@ -62,7 +60,7 @@ body {
 
 /* Wrapper */
 .wrapper {
-  max-width: 1180px;
+  max-width: 750px;
   padding-right: 15px;
   padding-left: 15px;
   margin-right: auto;
@@ -86,13 +84,13 @@ textarea {
   width: 100%;
   min-height: 150px;
   border-radius: 1rem;
+  font-family: sans-serif;
 }
 
 textarea:focus {
   outline-color: #2cc36b;
   border-radius: 1rem;
-  font-family: Helvetica, Helvetica Neue, Roboto, Arial, Microsoft Yahei,
-    "\5FAE\8F6F\96C5\9ED1", SimSun, "\5B8B\4F53", sans-serif;
+  font-family: sans-serif;
 }
 
 .seo-faq {
@@ -171,3 +169,7 @@ a:active {
   display: flex;
 }
 
+/* content editor overrides */
+.ce-block__content {
+  max-width: 750px;
+}

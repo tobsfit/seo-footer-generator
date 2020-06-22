@@ -7,7 +7,8 @@
   <title>SEO Template</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://tobsfit.github.io/surfooter-generator/content-tools/content-tools.min.css" rel="stylesheet">
+  <!-- <link href="https://tobsfit.github.io/surfooter-generator/content-tools/content-tools.min.css" rel="stylesheet"> -->
+
   <!-- GitHub Styles -->
   <!-- <link href="https://tobsfit.github.io/surfooter-generator/public/style.css" rel="stylesheet"> -->
 
@@ -37,7 +38,7 @@
   </div>
 
   <div class="wrapper">
-    <aside>
+    <!-- <aside>
       <h3>Define your Surfooter</h3>
       <form id="dialog" name="dialog">
         I would like to have a
@@ -57,14 +58,14 @@
           columns
         </div>
       </form>
-    </aside>
-    <aside>
+    </aside> -->
+    <!-- <aside>
       <form id="insert-html" name="insert-html" method="POST">
         <h3>Replace Surfooter Code</h3>
         <textarea id="insert-html__textarea"></textarea><br>
         <button id="insert-html__submit" type="button" class="surfooter-button">Insert</button>
       </form>
-    </aside>
+    </aside> -->
     <aside>
       <div class="seo-faqs">
         <h3>SEO Google FAQs</h3>
@@ -105,13 +106,13 @@
           <button id="seo-faqs__submit" type="submit" class="surfooter-button">Add FAQ content</button>
         </form>
     </aside>
-    <!-- <aside>
-      <form id="insert-global-class" name="insert-global-class" method="POST">
-        <label for="insert-global-class__input">Insert global class:</label><br>
-        <input id="insert-global-class__input"></input><br>
-        <button id="insert-global-class__input__submit" type="button">Insert</button>
+  
+    <aside>
+      <form id="upload-file" name="upload-file" method="POST">
+        <label for="file">Choose file to upload</label>
+        <input type="file" id="file" name="file" multiple>
       </form>
-    </aside> -->
+    </aside>
     <main>
       <div id="clipboard">
         <style>
@@ -184,209 +185,31 @@
             }
           }
         </style>
-        <div class="surfooter">
-          <section data-editable="">
-            <h3>Lorem ipsum dolor sit amet</h3>
-            <h4>Quam lacus suspendisse faucibus interdum posuere lorem</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-              dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-              ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-              fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-              mollit anim id est laborum.</p>
-          </section>
-
-          <section class="article-container">
-            <!-- col -->
-            <article data-editable="">
-              <h5>Lorem ipsum dolor sit amet</h5>
-              <div class="image" data-editable-image="">
-                <img class="img-responsive" alt="surfooter image" src="https://via.placeholder.com/150/2cc36b/FFFFFF">
-              </div>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                aliquip ex
-                ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                fugiat nulla pariatur <strong><a href="#">tempor</a></strong> oder
-                <strong><a href="#">quis</a></strong>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                aliquip exea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                dolore eu
-                fugiat nulla pariatur. <strong><a href="#">Duis</a></strong>,<strong><a href="#">voluptate</a></strong>.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                aliquip exea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                dolore eu
-                fugiat nulla pariatur. <strong><a href="#">Duis</a></strong>.
-              </p>
-            </article>
-            <!-- col -->
-            <div data-editable="">
-              <h5>Lorem ipsum dolor sit amet</h5>
-              <div class="image" data-editable-image="">
-                <img class="img-responsive" alt="surfooter image" src="https://via.placeholder.com/150/2cc36b/FFFFFF">
-              </div>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                aliquip ex
-                ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                fugiat nulla pariatur <strong><a href="#">tempor</a></strong> oder
-                <strong><a href="#">quis</a></strong>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                aliquip exea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                dolore eu
-                fugiat nulla pariatur. <strong><a href="#">Duis</a></strong>,<strong><a href="#">voluptate</a></strong>.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                aliquip exea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                dolore eu
-                fugiat nulla pariatur. <strong><a href="#">Duis</a></strong>.
-              </p>
-            </div>
-            <!-- col -->
-            <article data-editable="">
-              <h5>Lorem ipsum dolor sit amet</h5>
-              <div class="image" data-editable-image="">
-                <img class="img-responsive" alt="surfooter image" src="https://via.placeholder.com/150/2cc36b/FFFFFF">
-              </div>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                aliquip ex
-                ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                fugiat nulla pariatur <strong><a href="#">tempor</a></strong> oder
-                <strong><a href="#">quis</a></strong>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                aliquip exea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                dolore eu
-                fugiat nulla pariatur. <strong><a href="#">Duis</a></strong>,<strong><a href="#">voluptate</a></strong>.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                aliquip exea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                dolore eu
-                fugiat nulla pariatur. <strong><a href="#">Duis</a></strong>.
-              </p>
-            </article>
-            <!-- col -->
-            <article data-editable="">
-              <h5>Lorem ipsum dolor sit amet</h5>
-              <div class="image" data-editable-image="">
-                <img class="img-responsive" alt="surfooter image" src="https://via.placeholder.com/150/2cc36b/FFFFFF">
-              </div>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                aliquip ex
-                ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                fugiat nulla pariatur <strong><a href="#">tempor</a></strong> oder
-                <strong><a href="#">quis</a></strong>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                aliquip exea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                dolore eu
-                fugiat nulla pariatur. <strong><a href="#">Duis</a></strong>,<strong><a href="#">voluptate</a></strong>.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                aliquip exea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                dolore eu
-                fugiat nulla pariatur. <strong><a href="#">Duis</a></strong>.
-              </p>
-            </article>
-          </section>
-          <section data-editable="">
-            <h3>Lorem ipsum dolor sit amet</h3>
-            <h4>Quam lacus suspendisse faucibus interdum posuere lorem</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-              dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-              ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-              fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-              mollit anim id est laborum.</p>
-          </section>
-          <section data-editable="">
-            <table>
-              <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Points</th>
-                <th>Points</th>
-                <th>Points</th>
-                <th>Points</th>
-                <th>Points</th>
-                <th>Points</th>
-                <th>Points</th>
-                <th>Points</th>
-                <th>Points</th>
-                <th>Points</th>
-              </tr>
-              <tr>
-                <td>Jill</td>
-                <td>Smith</td>
-                <td>50</td>
-                <td>50</td>
-                <td>50</td>
-                <td>50</td>
-                <td>50</td>
-                <td>50</td>
-                <td>50</td>
-                <td>50</td>
-                <td>50</td>
-                <td>50</td>
-              </tr>
-              <tr>
-                <td>Eve</td>
-                <td>Jackson</td>
-                <td>94</td>
-                <td>94</td>
-                <td>94</td>
-                <td>94</td>
-                <td>94</td>
-                <td>94</td>
-                <td>94</td>
-                <td>94</td>
-                <td>94</td>
-                <td>94</td>
-              </tr>
-              <tr>
-                <td>Adam</td>
-                <td>Johnson</td>
-                <td>67</td>
-                <td>67</td>
-                <td>67</td>
-                <td>67</td>
-                <td>67</td>
-                <td>67</td>
-                <td>67</td>
-                <td>67</td>
-                <td>67</td>
-                <td>67</td>
-              </tr>
-            </table>
-          </section>
-        </div>
+        <div id="editorjs"></div>
         <code id="surfooter__seo-faqs-preview" lang="html5"></code>
       </div><!-- End Clipboard -->
     </main>
 
 
+    <button id="saveButton" type="button" class="surfooter-button" download>Save surfooter</button>
+    <hr />
     <button id="copy-content-clipboard" type="button" class="surfooter-button">Copy surfooter and FAQs to
       clipboard</button>
   </div>
 
   <!-- content tools -->
+  <!-- <script type="text/javascript" src="https://tobsfit.github.io/surfooter-generator/content-tools/content-tools.min.js"> -->
+  <!-- <script type="text/javascript" src="https://tobsfit.github.io/surfooter-generator/index.js"></script> -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js"></script>
-  <script type="text/javascript" src="https://tobsfit.github.io/surfooter-generator/content-tools/content-tools.min.js">
   </script>
-  <script type="text/javascript" src="https://tobsfit.github.io/surfooter-generator/index.js"></script>
 
   <!-- node script -->
   <!-- <script type="text/javascript" src="https://tobsfit.github.io/surfooter-generator/public/main.js"></script> -->
 
   <!-- local dev -->
-  <script type="text/javascript" src="main.js"></script>
+  <!-- <script type="text/javascript" src="index.js"></script> -->
+  <!-- <script type="text/javascript" src="main.js"></script> -->
+  <script type="text/javascript" src="bundle.js"></script>
   </div>
 </body>
 
