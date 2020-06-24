@@ -30,7 +30,8 @@ const prefillData = (pageContent: object) => {
         class: Header,
         inlineToolbar: ['link'],
         config: {
-          placeholder: 'Header'
+          placeholder: 'Header',
+          levels: [3, 4],
         },
         shortcut: 'CMD+SHIFT+H'
       },
@@ -38,7 +39,7 @@ const prefillData = (pageContent: object) => {
         class: ImageUrl,
         inlineToolbar: true,
         config: {
-          placeholder: 'Paste image URL'
+          placeholder: 'Paste image URL',
         }
       },
       list: {
@@ -107,7 +108,8 @@ function download(filename: string, text: string) {
 // Copy Code
 document.querySelector('#copy-content-clipboard').addEventListener('click', () => {
   editor.save().then((savedData: any) => {
-    copySurfooterMarkup(savedData);
+    const html = copySurfooterMarkup(savedData);
+    copyToClipboard(html);
   });
 });
 
@@ -193,13 +195,16 @@ const copySurfooterMarkup = (savedData: any) => {
   const seoFaqs = document.querySelector('#surfooter__seo-faqs-preview').innerHTML;
   if (seoFaqs) html += `<script type="application/ld+json">${seoFaqs}</script>`;
   html = beautifyString(html);
+  return html;
+}
 
+const copyToClipboard = (html: string) => {
   const copyListener = (e: any) => {
     e.clipboardData.setData('text/html', html);
     e.clipboardData.setData('text/plain', html);
     showAlert('Surfooter Code was copied.');
     e.preventDefault();
-  }
+  };
   document.addEventListener('copy', copyListener);
   document.execCommand('copy');
   document.removeEventListener('copy', copyListener);
@@ -291,3 +296,12 @@ document.getElementById('file').addEventListener('change', function () {
   };
   reader.readAsText(allFiles.files[0]);
 });
+
+// Save as html file
+document.querySelector('#save-as-html').addEventListener('click', () => {
+  editor.save().then((savedData: any) => {
+    const html = copySurfooterMarkup(savedData);
+    download("surfooter-code.html", html);
+  });
+});
+
