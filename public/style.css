@@ -169,7 +169,38 @@ a:active {
   display: flex;
 }
 
-/* content editor overrides */
-.ce-block__content {
+/* 
+*content editor overrides
+**/
+#clipboard .codex-editor__redactor {
+  padding-bottom: 0 !important;
+}
+
+.surfooter .ce-block__content {
   max-width: 750px;
+}
+
+.surfooter .simple-image > div {
+  text-align: center;
+}
+
+.surfooter .cdx-list--unordered {
+  list-style: none;
+}
+
+.surfooter .ce-delimiter {
+  height: auto;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+.surfooter .ce-delimiter:before {
+  display: inline-block;
+  content: "***";
+  font-size: 30px;
+  line-height: 65px;
+  height: 30px;
+  letter-spacing: 0.3em;
+  color: #0082c3;
 }

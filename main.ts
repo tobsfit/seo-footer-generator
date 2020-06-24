@@ -3,7 +3,6 @@ import EditorJS from '@editorjs/editorjs';
 import Header from '@editorjs/header';
 import List from '@editorjs/list';
 import LinkTool from '@editorjs/link';
-// import SimpleImage from '@editorjs/simple-image';
 import Embed from '@editorjs/embed';
 import Checklist from '@editorjs/checklist';
 import Quote from '@editorjs/quote';
@@ -17,6 +16,8 @@ import Table from '@editorjs/table';
 import ImageUrl from './image-url/image-url';
 
 import pageContent from './data/data-complex-4';
+
+import beautifyString from './format-document/beautify-string';
 
 const saveButton = document.getElementById('saveButton');
 
@@ -81,9 +82,6 @@ const prefillData = (pageContent: object) => {
       },
     },
     data: pageContent,
-    // onChange: function () {
-    //   console.log('something changed');
-    // }
     logLevel: 'ERROR',
   });
 }
@@ -91,7 +89,7 @@ prefillData(pageContent);
 
 saveButton.addEventListener('click', function () {
   editor.save().then((savedData: any) => {
-    console.log(savedData);
+    // console.log(savedData);
     download("surfooter.json", JSON.stringify(savedData));
   });
 });
@@ -114,9 +112,11 @@ document.querySelector('#copy-content-clipboard').addEventListener('click', () =
 });
 
 const copySurfooterMarkup = (savedData: any) => {
-  console.log(savedData);
   const blocks = savedData.blocks;
-  let html = '';
+  console.log(blocks);
+  const css = `<style id="surfooter__styles">${document.querySelector('#clipboard__styling').innerHTML}</style>`;
+  let html = css;
+  html += `<div class="surfooter">`
   for (let block of blocks) {
     let { type, data } = <any>block;
     switch (type) {
@@ -139,30 +139,70 @@ const copySurfooterMarkup = (savedData: any) => {
         });
         html += '</ul>';
         break;
+      case 'checklist':
+        html += '<div class="surfooter__checkboxes">';
+        block.data.items.forEach(function (item: any) {
+          html += `
+          <div class="surfooter__checkbox">
+            <input type="checkbox" id="${item.text}" name="${item.text}" ${item.checked ? 'checked' : ''}>
+            <label for="${item.text}">${item.text}</label>
+          </div>`
+        });
+        html += '</div>';
+        break;
+      case 'quote':
+        html += '<div class="surfooter__quote">';
+        html += `<blockquote ${block.data.alignment ? `style="text-align: ${block.data.alignment}` : ''}">
+        ${block.data.caption ? '<span>Author: ' + block.data.caption + '</span>' : ''}
+        </blockquote>`;
+        html += '</div>';
+        break;
+      case 'warning':
+        html += `<div class="surfooter__warning">
+          <div class="surfooter__warning__title">${block.data.title}</div>
+          <div class="surfooter__warning__message">${block.data.message}</div>
+        </div>`;
+        break;
+      case 'code':
+        html += `<textarea class="surfooter__code">${block.data.code}</textarea>`;
+        break;
+      case 'table':
+        html += '<div style="overflow-x: scroll">';
+        html += '<table class="surfooter__table" style="width:100%">';
+        block.data.content.forEach(function (tableRow: any, index: number) {
+          html += '<tr>';
+          tableRow.forEach(function (tableCol: any) {
+            if (index === 0) {
+              html += `<th>${tableCol}</th>`;
+            } else {
+              html += `<td>${tableCol}</td>`;
+            }
+          });
+          html += '</tr>';
+        });
+        html += '</table>';
+        html += '</div>';
+        break;
       default:
-        console.log('Unknown block type', block.type);
-        console.log(block);
+        console.warn('Unknown block type', block.type);
+        console.warn(block);
         break;
     }
   }
-  console.log(html);
+  html += `</div>`
+  const seoFaqs = document.querySelector('#surfooter__seo-faqs-preview').innerHTML;
+  if (seoFaqs) html += `<script type="application/ld+json">${seoFaqs}</script>`;
+  html = beautifyString(html);
 
-  // let markup = str;
-  // markup = markup
-  //   .replace(/ data-editable=""/g, '')
-  //   .replace(/ data-editable-image=""/g, '')
-  //   .replace(/<code id="surfooter__seo-faqs-preview" lang="html5">/g, '<script type="application/ld+json">')
-  //   .replace(/<\/code>/g, '</script>');
-  // document.addEventListener('copy', listener);
-  // document.execCommand('copy');
-  // document.removeEventListener('copy', listener);
-
-  // function listener(e: any) {
-  //   e.clipboardData.setData('text/html', markup);
-  //   e.clipboardData.setData('text/plain', markup);
-  //   showAlert('Surfooter Code was copied.');
-  //   e.preventDefault();
-  // }
+  const copyListener = (e: any) => {
+    e.clipboardData.setData('text/html', html);
+    e.clipboardData.setData('text/plain', html);
+    showAlert('Surfooter Code was copied.');
+    e.preventDefault();
+  }
+  document.addEventListener('copy', copyListener);
+  document.execCommand('copy');
+  document.removeEventListener('copy', copyListener);
 }
 
 
@@ -179,7 +219,6 @@ document.querySelector('#seo-faqs').addEventListener('submit', (e) => {
   textforms.forEach((faq) => {
     const question: string = (faq as HTMLElement).querySelector<HTMLTextAreaElement>('.seo-faq__question').value.trim();
     const answer: string = (faq as HTMLElement).querySelector<HTMLTextAreaElement>('.seo-faq__answer').value.trim();
-    // console.log((element as HTMLTextAreaElement).value);
     const singleFAQ = {
       '@type': 'Question',
       'name': question,
@@ -233,25 +272,20 @@ const showAlert = (message: string) => {
   }, 7000);
 };
 
-
+// Add file
 document.getElementById('file').addEventListener('change', function () {
   const allFiles: any = this;
   if (allFiles.files.length === 0) {
-    console.log('No file selected.');
+    console.warn('No file selected.');
     return;
   }
   const reader = new FileReader();
   reader.onload = function fileReadCompleted() {
     let result: any = reader.result;
-    console.log(result);
     if (result.length <= 0) return;
-    /**
-    * Destroy editor.
-    */
+    // Destroy editor.
     editor.destroy();
-    /**
-    * Create new editor with prefilled data from json file.
-    */
+    // Create new editor with prefilled data from json file.
     result = JSON.parse(result);
     prefillData(result);
   };
