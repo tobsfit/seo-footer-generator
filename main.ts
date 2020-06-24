@@ -104,7 +104,7 @@ function download(filename: string, text: string) {
   document.body.removeChild(element);
 }
 
-// Copy Code
+// Copy Code 
 document.querySelector('#copy-content-clipboard').addEventListener('click', () => {
   editor.save().then((savedData: any) => {
     copySurfooterMarkup(savedData);
