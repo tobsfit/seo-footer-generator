@@ -1,3 +1,12 @@
+"use strict";
+exports.__esModule = true;
+var editorjs_1 = require("@editorjs/editorjs");
+var editor = new editorjs_1["default"]({
+    /**
+     * Id of Element that should contain Editor instance
+     */
+    holder: 'editorjs'
+});
 var ImageHandler = /** @class */ (function () {
     function ImageHandler(image) {
         this.image = image;

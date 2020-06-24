@@ -11,8 +11,6 @@ html {
 
 body {
   margin: 0;
-  font-family: Helvetica, Helvetica Neue, Roboto, Arial, Microsoft Yahei,
-    "\5FAE\8F6F\96C5\9ED1", SimSun, "\5B8B\4F53", sans-serif;
   font-weight: 400;
   font-style: normal;
   font-size: 14px;
@@ -62,7 +60,7 @@ body {
 
 /* Wrapper */
 .wrapper {
-  max-width: 1180px;
+  max-width: 750px;
   padding-right: 15px;
   padding-left: 15px;
   margin-right: auto;
@@ -86,13 +84,13 @@ textarea {
   width: 100%;
   min-height: 150px;
   border-radius: 1rem;
+  font-family: sans-serif;
 }
 
 textarea:focus {
   outline-color: #2cc36b;
   border-radius: 1rem;
-  font-family: Helvetica, Helvetica Neue, Roboto, Arial, Microsoft Yahei,
-    "\5FAE\8F6F\96C5\9ED1", SimSun, "\5B8B\4F53", sans-serif;
+  font-family: sans-serif;
 }
 
 .seo-faq {
@@ -171,3 +169,38 @@ a:active {
   display: flex;
 }
 
+/* 
+*content editor overrides
+**/
+#clipboard .codex-editor__redactor {
+  padding-bottom: 0 !important;
+}
+
+.surfooter .ce-block__content {
+  max-width: 750px;
+}
+
+.surfooter .simple-image > div {
+  text-align: center;
+}
+
+.surfooter .cdx-list--unordered {
+  list-style: none;
+}
+
+.surfooter .ce-delimiter {
+  height: auto;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+.surfooter .ce-delimiter:before {
+  display: inline-block;
+  content: "***";
+  font-size: 30px;
+  line-height: 65px;
+  height: 30px;
+  letter-spacing: 0.3em;
+  color: #0082c3;
+}

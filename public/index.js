@@ -1,4 +1,15 @@
-window.addEventListener('load', function () {
+// import EditorJS from '@editorjs/editorjs';
+// const editor = new EditorJS({
+//   /**
+//    * Id of Element that should contain Editor instance
+//    */
+//   holder: 'editorjs'
+// });
+
+
+// ContentTools
+
+/* window.addEventListener('load', function () {
   var editor;
   ContentTools.StylePalette.add([
     new ContentTools.Style('Author', 'author', ['p'])
@@ -59,4 +70,4 @@ window.addEventListener('load', function () {
     // Stop the autosave
     clearInterval(this.autoSaveTimer);
   });
-});
+}); */

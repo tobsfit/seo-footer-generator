@@ -7,10 +7,8 @@
   <title>SEO Template</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://tobsfit.github.io/surfooter-generator/content-tools/content-tools.min.css" rel="stylesheet">
   <!-- GitHub Styles -->
-  <link href="https://tobsfit.github.io/surfooter-generator/public/style.css" rel="stylesheet">
-  
+  <!-- <link href="https://tobsfit.github.io/surfooter-generator/public/style.css" rel="stylesheet"> -->
   <!-- local dev -->
   <!-- <link href="style.css" rel="stylesheet"> -->
 </head>
@@ -37,7 +35,7 @@
   </div>
 
   <div class="wrapper">
-    <aside>
+    <!-- <aside>
       <h3>Define your Surfooter</h3>
       <form id="dialog" name="dialog">
         I would like to have a
@@ -57,14 +55,14 @@
           columns
         </div>
       </form>
-    </aside>
-    <aside>
+    </aside> -->
+    <!-- <aside>
       <form id="insert-html" name="insert-html" method="POST">
         <h3>Replace Surfooter Code</h3>
         <textarea id="insert-html__textarea"></textarea><br>
         <button id="insert-html__submit" type="button" class="surfooter-button">Insert</button>
       </form>
-    </aside>
+    </aside> -->
     <aside>
       <div class="seo-faqs">
         <h3>SEO Google FAQs</h3>
@@ -105,41 +103,110 @@
           <button id="seo-faqs__submit" type="submit" class="surfooter-button">Add FAQ content</button>
         </form>
     </aside>
-    <!-- <aside>
-      <form id="insert-global-class" name="insert-global-class" method="POST">
-        <label for="insert-global-class__input">Insert global class:</label><br>
-        <input id="insert-global-class__input"></input><br>
-        <button id="insert-global-class__input__submit" type="button">Insert</button>
+
+    <aside>
+      <form id="upload-file" name="upload-file" method="POST">
+        <label for="file">Choose file to upload</label>
+        <input type="file" id="file" class="surfooter-button" name="file" multiple>
       </form>
-    </aside> -->
+    </aside>
     <main>
       <div id="clipboard">
-        <style>
+        <style id="clipboard__styling">
+          .surfooter * {
+            text-align: left;
+            line-height: 1.5
+          }
+
+          @media screen and (min-width: 768px) {
+            .surfooter {
+              max-width: 720px;
+            }
+          }
+
+          .surfooter h1 {
+            font-size: 4rem;
+          }
+
+          .surfooter h2 {
+            font-size: 3rem;
+          }
+
           .surfooter h3 {
-            font-size: 1.75rem;
+            font-size: 2rem;
             font-weight: bold;
-            margin: 2rem 0 1.25rem;
+            margin: 2rem 0 1rem 0;
+            padding: 0;
             color: #323233;
+            text-align: left;
           }
 
           .surfooter h4 {
-            font-size: 1.65rem;
+            font-size: 1.3rem;
             font-weight: normal;
-            margin: 0.75rem 0 1.25rem;
+            margin: 1rem 0 0.5rem 0;
+            padding: 0;
             color: #323233;
+            text-align: left;
+            height: auto;
           }
 
           .surfooter h5 {
-            font-size: 1.55rem;
+            font-size: 1rem;
             font-weight: normal;
-            margin: 0.75rem 0 1.25rem;
+            margin: 0.75rem 0 0.25rem 0;
+            padding: 0;
             color: #323233;
+            text-align: left;
+          }
+
+          .surfooter h6 {
+            font-size: 1rem;
+            font-weight: normal;
+            margin: 0.75rem 0 0.25rem 0;
+            padding: 0;
+            color: #323233;
+            text-align: left;
           }
 
           .surfooter p {
             font-size: 1.3rem;
+            font-style: normal;
+            text-align: left;
             color: #323233;
-            margin: 2rem 0 1rem;
+            margin: 1rem 0;
+            padding: 0;
+          }
+
+          .surfooter ul,
+          .surfooter ol {
+            padding-left: 0;
+            margin: 1rem 0;
+          }
+
+          @media screen and (min-width: 768px) {
+            .surfooter ul {
+              padding-left: 2rem;
+            }
+          }
+
+          .surfooter li {
+            font-size: 1.3rem;
+            line-height: 1.75
+          }
+
+          .surfooter li:before {
+            content: "•";
+            padding-right: 8px;
+            color: #0082c3;
+          }
+
+          .surfooter .mark,
+          .surfooter mark {
+            background-color: #0082c3;
+            color: white;
+            padding: 0.25rem 0.5rem;
+            letter-spacing: 0.1rem;
           }
 
           .surfooter .scrollable-table {
@@ -150,6 +217,136 @@
             width: 100%;
             text-align: left;
             padding: 1rem 0
+          }
+
+          .surfooter img {
+            max-width: 100%;
+            display: block;
+          }
+
+          .surfooter blockquote {
+            display: block;
+            margin-top: 1em;
+            margin-bottom: 1em;
+            margin-left: 0;
+            margin-right: 0;
+            box-shadow: 0 0 5px rgba(0, 0, 0, .2);
+            border-left: 5px solid #0082c3;
+            font-size: 1.3rem;
+          }
+
+          @media screen and (min-width: 768px) {
+            .surfooter blockquote {
+              margin-left: 4rem;
+              margin-right: 4rem;
+            }
+          }
+
+          .surfooter__warning {
+            display: block;
+            margin-top: 1em;
+            margin-bottom: 1em;
+            margin-left: 0;
+            margin-right: 0;
+            box-shadow: 0 0 5px rgba(0, 0, 0, .2);
+            border-left: 5px solid rgba(255, 218, 29);
+            font-size: 1.3rem;
+            padding: 1rem 2rem;
+          }
+
+          @media screen and (min-width: 768px) {
+            .surfooter__warning {
+              margin-left: 4rem;
+              margin-right: 4rem;
+            }
+          }
+
+          textarea.surfooter__code {
+            border: 1px solid rgba(201, 201, 204, .48);
+            -webkit-box-shadow: inset 0 1px 2px 0 rgba(35, 44, 72, .06);
+            box-shadow: inset 0 1px 2px 0 rgba(35, 44, 72, .06);
+            border-radius: 3px;
+            padding: 10px 12px;
+            outline: none;
+            width: 100%;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+          }
+
+          .surfooter__table {
+            border-collapse: collapse;
+            width: 100%;
+          }
+
+          .surfooter__table td,
+          .surfooter__table th {
+            border: 1px solid #ddd;
+            padding: 1rem;
+          }
+
+          .surfooter__table tr:nth-child(even) {
+            background-color: #f2f2f2;
+          }
+
+          .surfooter__table tr:hover {
+            background-color: #ddd;
+          }
+
+          .surfooter__table th {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+            background-color: #0082c3;
+            color: white;
+          }
+
+          @media screen and (min-width: 768px) {
+            .surfooter img {
+              margin: 3rem auto 1rem;
+              max-width: 40rem;
+              box-shadow: 0 0 5px rgba(0, 0, 0, .2);
+              transition: 200ms;
+            }
+
+            .surfooter img:hover {
+              transform: scale(1.015);
+            }
+          }
+
+          .surfooter hr {
+            height: auto;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+          }
+
+          .surfooter hr:before {
+            display: inline-block;
+            content: "***";
+            font-size: 30px;
+            line-height: 65px;
+            height: 30px;
+            letter-spacing: 0.3em;
+            color: #0082c3;
+          }
+
+          .surfooter em {
+            text-align: center;
+            display: block;
+          }
+
+          .surfooter__checkbox {
+            line-height: 2;
+          }
+
+          .surfooter__checkbox input[type=checkbox] {
+            margin: 0;
+          }
+
+          .surfooter__checkbox label {
+            position: relative;
+            bottom: .1rem;
+            left: 1rem;
+            padding: 0;
           }
 
           /* article styling */
@@ -183,210 +380,27 @@
               padding: 0 1rem;
             }
           }
+
+          .Surfooter {
+            width: 100%;
+          }
         </style>
         <div class="surfooter">
-          <section data-editable="">
-            <h3>Lorem ipsum dolor sit amet</h3>
-            <h4>Quam lacus suspendisse faucibus interdum posuere lorem</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-              dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-              ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-              fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-              mollit anim id est laborum.</p>
-          </section>
-
-          <section class="article-container">
-            <!-- col -->
-            <article data-editable="">
-              <h5>Lorem ipsum dolor sit amet</h5>
-              <div class="image" data-editable-image="">
-                <img class="img-responsive" alt="surfooter image" src="https://via.placeholder.com/150/2cc36b/FFFFFF">
-              </div>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                aliquip ex
-                ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                fugiat nulla pariatur <strong><a href="#">tempor</a></strong> oder
-                <strong><a href="#">quis</a></strong>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                aliquip exea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                dolore eu
-                fugiat nulla pariatur. <strong><a href="#">Duis</a></strong>,<strong><a href="#">voluptate</a></strong>.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                aliquip exea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                dolore eu
-                fugiat nulla pariatur. <strong><a href="#">Duis</a></strong>.
-              </p>
-            </article>
-            <!-- col -->
-            <div data-editable="">
-              <h5>Lorem ipsum dolor sit amet</h5>
-              <div class="image" data-editable-image="">
-                <img class="img-responsive" alt="surfooter image" src="https://via.placeholder.com/150/2cc36b/FFFFFF">
-              </div>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                aliquip ex
-                ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                fugiat nulla pariatur <strong><a href="#">tempor</a></strong> oder
-                <strong><a href="#">quis</a></strong>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                aliquip exea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                dolore eu
-                fugiat nulla pariatur. <strong><a href="#">Duis</a></strong>,<strong><a href="#">voluptate</a></strong>.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                aliquip exea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                dolore eu
-                fugiat nulla pariatur. <strong><a href="#">Duis</a></strong>.
-              </p>
-            </div>
-            <!-- col -->
-            <article data-editable="">
-              <h5>Lorem ipsum dolor sit amet</h5>
-              <div class="image" data-editable-image="">
-                <img class="img-responsive" alt="surfooter image" src="https://via.placeholder.com/150/2cc36b/FFFFFF">
-              </div>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                aliquip ex
-                ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                fugiat nulla pariatur <strong><a href="#">tempor</a></strong> oder
-                <strong><a href="#">quis</a></strong>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                aliquip exea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                dolore eu
-                fugiat nulla pariatur. <strong><a href="#">Duis</a></strong>,<strong><a href="#">voluptate</a></strong>.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                aliquip exea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                dolore eu
-                fugiat nulla pariatur. <strong><a href="#">Duis</a></strong>.
-              </p>
-            </article>
-            <!-- col -->
-            <article data-editable="">
-              <h5>Lorem ipsum dolor sit amet</h5>
-              <div class="image" data-editable-image="">
-                <img class="img-responsive" alt="surfooter image" src="https://via.placeholder.com/150/2cc36b/FFFFFF">
-              </div>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                aliquip ex
-                ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                fugiat nulla pariatur <strong><a href="#">tempor</a></strong> oder
-                <strong><a href="#">quis</a></strong>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                aliquip exea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                dolore eu
-                fugiat nulla pariatur. <strong><a href="#">Duis</a></strong>,<strong><a href="#">voluptate</a></strong>.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                aliquip exea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                dolore eu
-                fugiat nulla pariatur. <strong><a href="#">Duis</a></strong>.
-              </p>
-            </article>
-          </section>
-          <section data-editable="">
-            <h3>Lorem ipsum dolor sit amet</h3>
-            <h4>Quam lacus suspendisse faucibus interdum posuere lorem</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-              dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-              ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-              fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-              mollit anim id est laborum.</p>
-          </section>
-          <section data-editable="">
-            <table>
-              <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Points</th>
-                <th>Points</th>
-                <th>Points</th>
-                <th>Points</th>
-                <th>Points</th>
-                <th>Points</th>
-                <th>Points</th>
-                <th>Points</th>
-                <th>Points</th>
-                <th>Points</th>
-              </tr>
-              <tr>
-                <td>Jill</td>
-                <td>Smith</td>
-                <td>50</td>
-                <td>50</td>
-                <td>50</td>
-                <td>50</td>
-                <td>50</td>
-                <td>50</td>
-                <td>50</td>
-                <td>50</td>
-                <td>50</td>
-                <td>50</td>
-              </tr>
-              <tr>
-                <td>Eve</td>
-                <td>Jackson</td>
-                <td>94</td>
-                <td>94</td>
-                <td>94</td>
-                <td>94</td>
-                <td>94</td>
-                <td>94</td>
-                <td>94</td>
-                <td>94</td>
-                <td>94</td>
-                <td>94</td>
-              </tr>
-              <tr>
-                <td>Adam</td>
-                <td>Johnson</td>
-                <td>67</td>
-                <td>67</td>
-                <td>67</td>
-                <td>67</td>
-                <td>67</td>
-                <td>67</td>
-                <td>67</td>
-                <td>67</td>
-                <td>67</td>
-                <td>67</td>
-              </tr>
-            </table>
-          </section>
+          <div id="editorjs"></div>
         </div>
         <code id="surfooter__seo-faqs-preview" lang="html5"></code>
       </div><!-- End Clipboard -->
     </main>
-
-
+    <button id="saveButton" type="button" class="surfooter-button" download>Save surfooter</button>
+    <hr />
     <button id="copy-content-clipboard" type="button" class="surfooter-button">Copy surfooter and FAQs to
       clipboard</button>
   </div>
-
-  <!-- content tools -->
+  <!-- <script type="text/javascript" src="https://tobsfit.github.io/surfooter-generator/public/bundle.js"></script> -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js"></script>
-  <script type="text/javascript" src="https://tobsfit.github.io/surfooter-generator/content-tools/content-tools.min.js">
   </script>
-  <script type="text/javascript" src="https://tobsfit.github.io/surfooter-generator/index.js"></script>
-
-  <!-- node script -->
-  <script type="text/javascript" src="https://tobsfit.github.io/surfooter-generator/public/main.js"></script>
-
   <!-- local dev -->
-  <!-- <script type="text/javascript" src="main.js"></script> -->
+  <script type="text/javascript" src="bundle.js"></script>
   </div>
 </body>
 
