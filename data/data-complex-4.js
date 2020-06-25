@@ -87,7 +87,7 @@ export default {
     {
       type: 'paragraph',
       data: {
-        text: 'Shortcut for divider * * * <mark class=\"cdx-marker\">CMD+SHIFT+C</mark>'
+        text: 'Shortcut for divider above (* * *) <mark class=\"cdx-marker\">CMD+SHIFT+C</mark>'
       }
     },
     {

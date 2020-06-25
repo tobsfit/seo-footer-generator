@@ -17,10 +17,10 @@ import ImageUrl from './plugins/image-url/image-url';
 import SeoFaq from './plugins/seo-faq/seo-faqs'
 import copyToClipboard from './plugins/copy-clipboard/copy-clipboard';
 import renderHtml from './plugins/render-html/render-html';
+import download from './plugins/download/download';
+import showAlert from './plugins/alert/alert';
 
 import pageContent from './data/data-complex-4';
-
-const saveButton = document.getElementById('save-as-json');
 
 let editor: any = {};
 const prefillData = (pageContent: object) => {
@@ -87,91 +87,111 @@ const prefillData = (pageContent: object) => {
     data: pageContent,
     logLevel: 'ERROR',
   });
+  // prefill form
+  const seoFaqForm = document.querySelector('#seo-faqs');
+  const seoCollection = (pageContent as any).blocks.filter((question: any) => question.type === 'seofaq');
+
+  if (seoFaqForm && seoCollection.length > 0) {
+    const textforms = document.querySelectorAll('.seo-faq');
+    const editorSeoData = seoCollection[0].data.content;
+    const seoData = JSON.parse(editorSeoData);
+    const seoQuestions = seoData.mainEntity;
+    // Reset SEO FAQ form
+    seoFaqForm.innerHTML = '';
+    seoQuestions.forEach((question: any) => {
+      const questionCode = `
+      <!-- question -->
+      <div class="seo-faq">
+        <textarea class="seo-faq__question">${question.name}</textarea>
+        <textarea class="seo-faq__answer" name="seo-faq__q1">${question.acceptedAnswer.text}</textarea>
+        <button class="seo-faq__remove surfooter-button surfooter-button--saturated">&#128293;</button>
+      </div>`;
+      seoFaqForm.innerHTML += questionCode;
+    });
+  }
 }
 prefillData(pageContent);
 
-saveButton.addEventListener('click', function () {
-  editor.save().then((savedData: any) => {
-    console.log(savedData);
-    download("surfooter.json", JSON.stringify(savedData));
-  });
-});
 
-function download(filename: string, text: string) {
-  const element = document.createElement('a');
-  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-  element.setAttribute('download', filename);
-  element.style.display = 'none';
-  document.body.appendChild(element);
-  element.click();
-  document.body.removeChild(element);
+// Save surfooter as json file
+const saveAsJsonButton = document.getElementById('save-as-json');
+if (saveAsJsonButton) {
+  saveAsJsonButton.addEventListener('click', function () {
+    editor.save().then((savedData: any) => {
+      // Print to console the saved data as json
+      console.log(savedData);
+      download("surfooter.json", JSON.stringify(savedData));
+    });
+  });
 }
 
 // Copy Code
-document.querySelector('#copy-content-clipboard').addEventListener('click', () => {
-  editor.save().then((savedData: any) => {
-    const html = renderHtml(savedData);
-    copyToClipboard(html);
-    showAlert('Surfooter Code was copied.');
+const copyContentClipboard = document.querySelector('#copy-content-clipboard');
+if (copyContentClipboard) {
+  copyContentClipboard.addEventListener('click', () => {
+    editor.save().then((savedData: any) => {
+      const html = renderHtml(savedData);
+      copyToClipboard(html);
+      showAlert('Surfooter Code was copied.');
+    });
   });
-});
+}
 
-
-
-document.querySelector('#seo-faqs__more').addEventListener('click', (e) => {
-  const addMore: EventTarget = e.target;
-  const form: HTMLElement = document.querySelector('#seo-faqs');
-  const textforms: NodeList = (form as HTMLFormElement).querySelectorAll('.seo-faq');
-  const newQuestionNumber = textforms.length + 1;
-  const newQuestion = `
+// More SEO FAQs
+const moreSeoQuestionsButton = document.querySelector('#seo-faqs__more');
+if (moreSeoQuestionsButton) {
+  moreSeoQuestionsButton.addEventListener('click', (event) => {
+    const addMore: EventTarget = event.target;
+    const form: HTMLElement = document.querySelector('#seo-faqs');
+    const textforms: NodeList = (form as HTMLFormElement).querySelectorAll('.seo-faq');
+    const newQuestionNumber = textforms.length + 1;
+    const newQuestion = `
   <!-- question -->
   <div class="seo-faq">
   <textarea class="seo-faq__question">Question ${newQuestionNumber}</textarea>
     <textarea class="seo-faq__answer" name="seo-faq__q${newQuestionNumber}">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea>
     <button class="seo-faq__remove surfooter-button surfooter-button--saturated">&#128293;</button>
   </div>`;
-  (addMore as HTMLElement).insertAdjacentHTML('beforebegin', newQuestion);
-});
-
-// Remove SEO Item
-const allRemoveButtons = document.querySelectorAll('.seo-faq__remove');
-allRemoveButtons.forEach((removeButton) => {
-  removeButton.addEventListener('click', removeSeoQuestion);
-});
-
-function removeSeoQuestion() {
-  const currentItem: HTMLElement = this.closest('.seo-faq');
-  currentItem.remove();
+    (addMore as HTMLElement).insertAdjacentHTML('beforebegin', newQuestion);
+  });
 }
 
-const showAlert = (message: string) => {
-  document.querySelector<HTMLElement>('.alert').classList.add('animate');
-  document.querySelector<HTMLElement>('.alert').querySelector('p').innerHTML = message;
-  setTimeout(() => {
-    document.querySelector<HTMLElement>('.alert').classList.remove('animate');
-    document.querySelector<HTMLElement>('.alert').querySelector('p').innerHTML = '';
-  }, 7000);
-};
+// Remove single SEO item
+const allRemoveButtons = document.querySelectorAll('.seo-faq__remove');
+if (allRemoveButtons.length > 0) {
+  const removeSeoQuestion = (): void => {
+    const currentItem: HTMLElement = (this as any).closest('.seo-faq');
+    currentItem.remove();
+  }
+  // addEventListener
+  allRemoveButtons.forEach((removeButton) => {
+    removeButton.addEventListener('click', removeSeoQuestion);
+  });
+}
 
 // Add file
-document.getElementById('file').addEventListener('change', function () {
-  const allFiles: any = this;
-  if (allFiles.files.length === 0) {
-    console.warn('No file selected.');
-    return;
-  }
-  const reader = new FileReader();
-  reader.onload = function fileReadCompleted() {
-    let result: any = reader.result;
-    if (result.length <= 0) return;
-    // Destroy editor.
-    editor.destroy();
-    // Create new editor with prefilled data from json file.
-    result = JSON.parse(result);
-    prefillData(result);
-  };
-  reader.readAsText(allFiles.files[0]);
-});
+const fileUploadButton = document.querySelector('#file');
+if (fileUploadButton) {
+  fileUploadButton.addEventListener('change', function () {
+    const allFiles: any = this;
+    if (allFiles.files.length === 0) {
+      console.warn('No file selected.');
+      return;
+    }
+    // create a file reader
+    const reader = new FileReader();
+    reader.onload = function fileReadCompleted() {
+      let result: any = reader.result;
+      if (result.length <= 0) return;
+      // Destroy editor.js
+      editor.destroy();
+      // Create new editor.js and prefill data from json
+      result = JSON.parse(result);
+      prefillData(result);
+    };
+    reader.readAsText(allFiles.files[0]);
+  });
+}
 
 // Save as html file
 document.querySelector('#save-as-html').addEventListener('click', () => {
