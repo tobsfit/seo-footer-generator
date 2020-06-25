@@ -16,9 +16,6 @@
 <body>
   <div class="alert">
     <p>Message</p>
-    <a class="alert__close">
-      <span class="close">&times;</span>
-    </a>
   </div>
 
   <div id="image-modal" class="modal">
@@ -35,77 +32,54 @@
   </div>
 
   <div class="wrapper">
-    <!-- <aside>
-      <h3>Define your Surfooter</h3>
-      <form id="dialog" name="dialog">
-        I would like to have a
-        <select id="base">
-          <option value="1">simple</option>
-          <option value="2" selected>complex</option>
-        </select>
-        <br>
-        <div class="dialog__columns">
-          surfooter and
-          <select id="num-columns">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4" selected>4</option>
-          </select><br>
-          columns
-        </div>
-      </form>
-    </aside> -->
-    <!-- <aside>
-      <form id="insert-html" name="insert-html" method="POST">
-        <h3>Replace Surfooter Code</h3>
-        <textarea id="insert-html__textarea"></textarea><br>
-        <button id="insert-html__submit" type="button" class="surfooter-button">Insert</button>
-      </form>
-    </aside> -->
     <aside>
       <div class="seo-faqs">
-        <h3>SEO Google FAQs</h3>
+        <input id="seo-faqs__state" name="seo-faqs__state" type="checkbox" class="toggle-section__input" checked />
+        <label class="toggle-section__headline" for="seo-faqs__state">
+          SEO FAQ Surfooter 
+          <span id="seo-faqs__state__icon" class="icon">&#8964;</span>
+          <a href="https://developers.google.com/search/docs/data-types/faqpage?hl=en">
+            Mark up your FAQs with structured data (developers.google.com)
+          </a>
+          </label>
         <form id="seo-faqs" method="POST">
           <!-- question -->
           <div class="seo-faq">
             <textarea class="seo-faq__question">Question 1</textarea>
             <textarea class="seo-faq__answer"
               name="seo-faq__q1">Quis nostrud exercitation ullamco laboris nisi ut aliquip.</textarea>
-            <button class="seo-faq__remove">X</button>
+            <button class="seo-faq__remove surfooter-button surfooter-button--saturated">&#128293;</button>
           </div>
-          <hr>
           <!-- question -->
           <div class="seo-faq">
             <textarea class="seo-faq__question">Question 2</textarea>
             <textarea class="seo-faq__answer"
               name="seo-faq__q2">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea>
-            <button class="seo-faq__remove">X</button>
-            <hr>
+            <button class="seo-faq__remove surfooter-button surfooter-button--saturated">&#128293;</button>
           </div>
           <!-- question -->
           <div class="seo-faq">
             <textarea class="seo-faq__question">Question 3</textarea>
             <textarea class="seo-faq__answer"
               name="seo-faq__q3">Aliquip exea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu</textarea>
-            <button class="seo-faq__remove">X</button>
-            <hr>
+            <button class="seo-faq__remove surfooter-button surfooter-button--saturated">&#128293;</button>
           </div>
           <!-- question -->
           <div class="seo-faq">
             <textarea class="seo-faq__question">Question 4</textarea>
             <textarea class="seo-faq__answer"
               name="seo-faq__q4">consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim adminim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip exea commodo consequat.</textarea>
-            <button class="seo-faq__remove">X</button>
-            <hr>
+            <button class="seo-faq__remove surfooter-button surfooter-button--saturated">&#128293;</button>
           </div>
-          <button id="seo-faqs__more" class="surfooter-button">Add more questions</button>
-          <button id="seo-faqs__submit" type="submit" class="surfooter-button">Add FAQ content</button>
+          <div class="icon icon__info"><span>&#9757;&#127996;</span> If you want to add the seo-faq section on top, pls
+            add it via the toolbar &#9641;.</div>
+          <button id="seo-faqs__more" class="surfooter-button" type="button">&#129504;&nbsp;Add more questions</button>
         </form>
     </aside>
 
     <aside>
       <form id="upload-file" name="upload-file" method="POST">
+        <span class="icon">&#129488;</span>
         <label for="file">Choose file to upload</label>
         <input type="file" id="file" class="surfooter-button" name="file" multiple>
       </form>
@@ -392,11 +366,21 @@
         <code id="surfooter__seo-faqs-preview" lang="html5"></code>
       </div><!-- End Clipboard -->
     </main>
-    <button id="saveButton" type="button" class="surfooter-button" download>Save surfooter configuration</button>
-    <hr />
-    <button id="copy-content-clipboard" type="button" class="surfooter-button">Copy to clipboard</button>
-    <hr />
-    <button id="save-as-html" type="button" class="surfooter-button">Save as HTML</button>
+    <aside class="surfooter__actions">
+      <div class="icon icon__info"><span>&#9757;&#127996;</span> If you want to add the seo-faq section on top, pls add
+        it via the toolbar.&#9641;</div>
+      <div>
+        <button id="save-as-json" type="button" class="surfooter-button" download>&#128190;&nbsp;Save surfooter
+          configuration</button>
+      </div>
+      <div>
+        <button id="copy-content-clipboard" type="button" class="surfooter-button">&#128209;&nbsp;Copy to
+          clipboard</button>
+      </div>
+      <div>
+        <button id="save-as-html" type="button" class="surfooter-button">&#129302;&nbsp;Save as HTML</button>
+      </div>
+    </aside>
   </div>
   <!-- <script type="text/javascript" src="https://tobsfit.github.io/surfooter-generator/public/bundle.js"></script> -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js"></script>

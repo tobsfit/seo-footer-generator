@@ -13,13 +13,14 @@ import Delimiter from '@editorjs/delimiter';
 import InlineCode from '@editorjs/inline-code';
 import Table from '@editorjs/table';
 
-import ImageUrl from './image-url/image-url';
+import ImageUrl from './plugins/image-url/image-url';
+import SeoFaq from './plugins/seo-faq/seo-faqs'
+import copyToClipboard from './plugins/copy-clipboard/copy-clipboard';
+import renderHtml from './plugins/render-html/render-html';
 
 import pageContent from './data/data-complex-4';
 
-import beautifyString from './format-document/beautify-string';
-
-const saveButton = document.getElementById('saveButton');
+const saveButton = document.getElementById('save-as-json');
 
 let editor: any = {};
 const prefillData = (pageContent: object) => {
@@ -81,6 +82,7 @@ const prefillData = (pageContent: object) => {
         inlineToolbar: true,
         shortcut: 'CMD+ALT+T'
       },
+      seofaq: SeoFaq,
     },
     data: pageContent,
     logLevel: 'ERROR',
@@ -90,7 +92,7 @@ prefillData(pageContent);
 
 saveButton.addEventListener('click', function () {
   editor.save().then((savedData: any) => {
-    // console.log(savedData);
+    console.log(savedData);
     download("surfooter.json", JSON.stringify(savedData));
   });
 });
@@ -108,138 +110,13 @@ function download(filename: string, text: string) {
 // Copy Code
 document.querySelector('#copy-content-clipboard').addEventListener('click', () => {
   editor.save().then((savedData: any) => {
-    const html = copySurfooterMarkup(savedData);
+    const html = renderHtml(savedData);
     copyToClipboard(html);
-  });
-});
-
-const copySurfooterMarkup = (savedData: any) => {
-  const blocks = savedData.blocks;
-  console.log(blocks);
-  const css = `<style id="surfooter__styles">${document.querySelector('#clipboard__styling').innerHTML}</style>`;
-  let html = css;
-  html += `<div class="surfooter">`
-  for (let block of blocks) {
-    let { type, data } = <any>block;
-    switch (type) {
-      case 'header':
-        html += `<h${block.data.level}>${block.data.text}</h${block.data.level}>`;
-        break;
-      case 'paragraph':
-        html += `<p>${block.data.text}</p>`;
-        break;
-      case 'delimiter':
-        html += '<hr />';
-        break;
-      case 'image':
-        html += `<img class="img-fluid" src="${block.data.url}" title="${block.data.caption}" /><br /><em>${block.data.caption}</em>`;
-        break;
-      case 'list':
-        html += '<ul>';
-        block.data.items.forEach(function (li: any) {
-          html += `<li>${li}</li>`;
-        });
-        html += '</ul>';
-        break;
-      case 'checklist':
-        html += '<div class="surfooter__checkboxes">';
-        block.data.items.forEach(function (item: any) {
-          html += `
-          <div class="surfooter__checkbox">
-            <input type="checkbox" id="${item.text}" name="${item.text}" ${item.checked ? 'checked' : ''}>
-            <label for="${item.text}">${item.text}</label>
-          </div>`
-        });
-        html += '</div>';
-        break;
-      case 'quote':
-        html += '<div class="surfooter__quote">';
-        html += `<blockquote ${block.data.alignment ? `style="text-align: ${block.data.alignment}` : ''}">
-        ${block.data.caption ? '<span>Author: ' + block.data.caption + '</span>' : ''}
-        </blockquote>`;
-        html += '</div>';
-        break;
-      case 'warning':
-        html += `<div class="surfooter__warning">
-          <div class="surfooter__warning__title">${block.data.title}</div>
-          <div class="surfooter__warning__message">${block.data.message}</div>
-        </div>`;
-        break;
-      case 'code':
-        html += `<textarea class="surfooter__code">${block.data.code}</textarea>`;
-        break;
-      case 'table':
-        html += '<div style="overflow-x: scroll">';
-        html += '<table class="surfooter__table" style="width:100%">';
-        block.data.content.forEach(function (tableRow: any, index: number) {
-          html += '<tr>';
-          tableRow.forEach(function (tableCol: any) {
-            if (index === 0) {
-              html += `<th>${tableCol}</th>`;
-            } else {
-              html += `<td>${tableCol}</td>`;
-            }
-          });
-          html += '</tr>';
-        });
-        html += '</table>';
-        html += '</div>';
-        break;
-      default:
-        console.warn('Unknown block type', block.type);
-        console.warn(block);
-        break;
-    }
-  }
-  html += `</div>`
-  const seoFaqs = document.querySelector('#surfooter__seo-faqs-preview').innerHTML;
-  if (seoFaqs) html += `<script type="application/ld+json">${seoFaqs}</script>`;
-  html = beautifyString(html);
-  return html;
-}
-
-const copyToClipboard = (html: string) => {
-  const copyListener = (e: any) => {
-    e.clipboardData.setData('text/html', html);
-    e.clipboardData.setData('text/plain', html);
     showAlert('Surfooter Code was copied.');
-    e.preventDefault();
-  };
-  document.addEventListener('copy', copyListener);
-  document.execCommand('copy');
-  document.removeEventListener('copy', copyListener);
-}
-
-
-// insert faq section
-document.querySelector('#seo-faqs').addEventListener('submit', (e) => {
-  e.preventDefault();
-  const form: EventTarget = e.target;
-  const textforms: NodeList = (form as HTMLFormElement).querySelectorAll('.seo-faq');
-  const finalFAQs = {
-    '@context': <string>'https://schema.org',
-    '@type': <string>'FAQPage',
-    'mainEntity': <any>[],
-  };
-  textforms.forEach((faq) => {
-    const question: string = (faq as HTMLElement).querySelector<HTMLTextAreaElement>('.seo-faq__question').value.trim();
-    const answer: string = (faq as HTMLElement).querySelector<HTMLTextAreaElement>('.seo-faq__answer').value.trim();
-    const singleFAQ = {
-      '@type': 'Question',
-      'name': question,
-      'acceptedAnswer': {
-        '@type': 'Answer',
-        'text': answer,
-      },
-    };
-    finalFAQs.mainEntity.push(singleFAQ);
   });
-  const scriptString = JSON.stringify(finalFAQs);
-  // insert preview
-  document.querySelector('#surfooter__seo-faqs-preview').innerHTML = scriptString;
-  // Show alert
-  showAlert('SEO FAQs are added to the surfooter code.');
 });
+
+
 
 document.querySelector('#seo-faqs__more').addEventListener('click', (e) => {
   const addMore: EventTarget = e.target;
@@ -251,8 +128,7 @@ document.querySelector('#seo-faqs__more').addEventListener('click', (e) => {
   <div class="seo-faq">
   <textarea class="seo-faq__question">Question ${newQuestionNumber}</textarea>
     <textarea class="seo-faq__answer" name="seo-faq__q${newQuestionNumber}">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea>
-    <button class="seo-faq__remove">X</button>
-    <hr>
+    <button class="seo-faq__remove surfooter-button surfooter-button--saturated">&#128293;</button>
   </div>`;
   (addMore as HTMLElement).insertAdjacentHTML('beforebegin', newQuestion);
 });
@@ -300,8 +176,26 @@ document.getElementById('file').addEventListener('change', function () {
 // Save as html file
 document.querySelector('#save-as-html').addEventListener('click', () => {
   editor.save().then((savedData: any) => {
-    const html = copySurfooterMarkup(savedData);
+    const html = renderHtml(savedData);
     download("surfooter-code.html", html);
   });
 });
 
+const checkSeoFaqStatus = () => {
+  const seoFaqInput = document.querySelector('#seo-faqs__state');
+  // check of SEO FAQ section is expanded
+  if ((seoFaqInput as HTMLInputElement).checked) {
+    document.querySelector('#seo-faqs').classList.add('hide')
+    seoFaqInput.parentElement.querySelector('#seo-faqs__state__icon').innerHTML = '&#9994;' // closed hand // https://www.w3schools.com/charsets/ref_emoji.asp
+  } else {
+    document.querySelector('#seo-faqs').classList.remove('hide');
+    seoFaqInput.parentElement.querySelector('#seo-faqs__state__icon').innerHTML = '&#9997;'; // writing hand // https://www.w3schools.com/charsets/ref_emoji.asp
+  }
+}
+
+document.querySelector('#seo-faqs__state').addEventListener('change', (e) => {
+  checkSeoFaqStatus();
+});
+document.addEventListener('DOMContentLoaded', () => {
+  checkSeoFaqStatus();
+});
