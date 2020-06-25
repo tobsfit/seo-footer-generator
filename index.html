@@ -36,12 +36,12 @@
       <div class="seo-faqs">
         <input id="seo-faqs__state" name="seo-faqs__state" type="checkbox" class="toggle-section__input" checked />
         <label class="toggle-section__headline" for="seo-faqs__state">
-          SEO FAQ Surfooter 
+          SEO FAQ Surfooter
           <span id="seo-faqs__state__icon" class="icon">&#8964;</span>
-          <a href="https://developers.google.com/search/docs/data-types/faqpage?hl=en">
+          <a href="https://developers.google.com/search/docs/data-types/faqpage?hl=en" target="_blank" rel="noopener">
             Mark up your FAQs with structured data (developers.google.com)
           </a>
-          </label>
+        </label>
         <form id="seo-faqs" method="POST">
           <!-- question -->
           <div class="seo-faq">
@@ -80,10 +80,27 @@
     <aside>
       <form id="upload-file" name="upload-file" method="POST">
         <span class="icon">&#129488;</span>
-        <label for="file">Choose file to upload</label>
+        <label for="file">Choose file to upload <i>(.json)</i>&nbsp;</label>
         <input type="file" id="file" class="surfooter-button" name="file" multiple>
+        <p>The json file saves your structured data, you can use it later to restore your content on this page</p>
       </form>
     </aside>
+
+    <aside>
+      <div class="good-to-know">
+        <span>Good to know</span><span class="icon icon--supersized">&nbsp;&#129504;</span>
+      </div>
+      <div>
+        For some content types are shortcuts available, for quick editing:
+        <ol>
+          <li>Headings: <mark>CMD+SHIFT+H</mark></li>
+          <li>List <mark>CMD+SHIFT+L</mark></li>
+          <li>Marker <mark>CMD+SHIFT+M</mark></li>
+          <li>Table <mark>CMD+ALT+T</mark></li>
+        </ol>
+      </div>
+    </aside>
+
     <main>
       <div id="clipboard">
         <style id="clipboard__styling">

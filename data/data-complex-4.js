@@ -3,7 +3,7 @@ export default {
     {
       type: "header",
       data: {
-        text: "Lorem ipsum dolor sit amet",
+        text: "You can write your content here. Shortcut headline: <mark class=\"cdx-marker\">CMD+SHIFT+H</mark>",
         level: 3
       }
     },
@@ -54,6 +54,7 @@ export default {
       type: 'list',
       data: {
         items: [
+          'Shortcut for lists: <mark class=\"cdx-marker\">CMD+SHIFT+L</mark>',
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
           'Duis aute irure dolor',
           'Excepteur sint occaecat cupidatat',
@@ -82,6 +83,12 @@ export default {
     {
       type: 'delimiter',
       data: {}
+    },
+    {
+      type: 'paragraph',
+      data: {
+        text: 'Shortcut for divider * * * <mark class=\"cdx-marker\">CMD+SHIFT+C</mark>'
+      }
     },
     {
       type: 'paragraph',
