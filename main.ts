@@ -19,11 +19,35 @@ import copyToClipboard from './plugins/copy-clipboard/copy-clipboard';
 import renderHtml from './plugins/render-html/render-html';
 import download from './plugins/download/download';
 import showAlert from './plugins/alert/alert';
+import eventRemoveButtonsSeo from './plugins/seo-remove-event/seo-remove-event';
 
 import pageContent from './data/data-complex-4';
 
+
+
 let editor: any = {};
-const prefillData = (pageContent: object) => {
+const prefillData = (pageContent: any, type: string) => {
+
+  const fillFromFile = (content: any) => {
+    if (type === 'config') return content;
+    const newContent = {};
+    (newContent as any).blocks = [];
+    try {
+      const splitContentNewline = content.split('\n');
+      for (let paragraph of splitContentNewline) {
+        const newParagraph = {
+          type: 'paragraph',
+          data: {
+            text: paragraph
+          }
+        };
+        (newContent as any).blocks.push(newParagraph);
+      };
+      return newContent;
+    } catch (e) {
+      console.warn(e);
+    }
+  }
   editor = new EditorJS({
     holder: 'editorjs',
     tools: {
@@ -84,15 +108,14 @@ const prefillData = (pageContent: object) => {
       },
       seofaq: SeoFaq,
     },
-    data: pageContent,
+    data: fillFromFile(pageContent),
     logLevel: 'ERROR',
   });
-  // prefill form
+  // prefill seo form data
   const seoFaqForm = document.querySelector('#seo-faqs');
+  if (!(pageContent as any).blocks) return;
   const seoCollection = (pageContent as any).blocks.filter((question: any) => question.type === 'seofaq');
-
   if (seoFaqForm && seoCollection.length > 0) {
-    const textforms = document.querySelectorAll('.seo-faq');
     const editorSeoData = seoCollection[0].data.content;
     const seoData = JSON.parse(editorSeoData);
     const seoQuestions = seoData.mainEntity;
@@ -104,13 +127,14 @@ const prefillData = (pageContent: object) => {
       <div class="seo-faq">
         <textarea class="seo-faq__question">${question.name}</textarea>
         <textarea class="seo-faq__answer" name="seo-faq__q1">${question.acceptedAnswer.text}</textarea>
-        <button class="seo-faq__remove surfooter-button surfooter-button--saturated">&#128293;</button>
+        <button type="button" class="seo-faq__remove surfooter-button surfooter-button--saturated">&#128293;</button>
       </div>`;
       seoFaqForm.innerHTML += questionCode;
     });
   }
+  eventRemoveButtonsSeo();
 }
-prefillData(pageContent);
+prefillData(pageContent, 'config');
 
 
 // Save surfooter as json file
@@ -146,50 +170,74 @@ if (moreSeoQuestionsButton) {
     const textforms: NodeList = (form as HTMLFormElement).querySelectorAll('.seo-faq');
     const newQuestionNumber = textforms.length + 1;
     const newQuestion = `
-  <!-- question -->
-  <div class="seo-faq">
-  <textarea class="seo-faq__question">Question ${newQuestionNumber}</textarea>
-    <textarea class="seo-faq__answer" name="seo-faq__q${newQuestionNumber}">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea>
-    <button class="seo-faq__remove surfooter-button surfooter-button--saturated">&#128293;</button>
-  </div>`;
+      <!-- question -->
+      <div class="seo-faq">
+      <textarea class="seo-faq__question">Question ${newQuestionNumber}</textarea>
+        <textarea class="seo-faq__answer" name="seo-faq__q${newQuestionNumber}">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea>
+        <button type="button" class="seo-faq__remove surfooter-button surfooter-button--saturated">&#128293;</button>
+      </div>`;
     (addMore as HTMLElement).insertAdjacentHTML('beforebegin', newQuestion);
+    eventRemoveButtonsSeo();
   });
 }
 
-// Remove single SEO item
-const allRemoveButtons = document.querySelectorAll('.seo-faq__remove');
-if (allRemoveButtons.length > 0) {
-  const removeSeoQuestion = (): void => {
-    const currentItem: HTMLElement = (this as any).closest('.seo-faq');
-    currentItem.remove();
+class FileHandler {
+  file: any;
+
+  uploadJson() {
+    const files: any = this.file;
+    const file = files.files[0];
+    const jsonType = /json.*/;
+    const textType = /(text|txt).*/;
+
+    if (files.files.length === 0) {
+      showAlert('No file selected.');
+      return;
+    }
+
+    const processFile = (type: string) => {
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        let result: any = reader.result;
+        if (result.length <= 0) return;
+
+        // Destroy editor.js
+        editor.destroy();
+
+        // Create new editor.js and prefill data from json
+        if (type === 'config') result = JSON.parse(result);
+        prefillData(result, type);
+      }
+      reader.readAsText(file);
+    }
+
+    if (file.type.match(jsonType)) {
+      processFile('config');
+    }
+
+    if (file.type.match(textType)) {
+      processFile('content');
+    }
   }
-  // addEventListener
-  allRemoveButtons.forEach((removeButton) => {
-    removeButton.addEventListener('click', removeSeoQuestion);
+}
+
+// Add file
+const configFileButton = document.querySelector('#file--config');
+if (configFileButton) {
+  configFileButton.addEventListener('change', function () {
+    let handleFile = new FileHandler;
+    handleFile.file = this;
+    handleFile.uploadJson();
   });
 }
 
 // Add file
-const fileUploadButton = document.querySelector('#file');
-if (fileUploadButton) {
-  fileUploadButton.addEventListener('change', function () {
-    const allFiles: any = this;
-    if (allFiles.files.length === 0) {
-      console.warn('No file selected.');
-      return;
-    }
-    // create a file reader
-    const reader = new FileReader();
-    reader.onload = function fileReadCompleted() {
-      let result: any = reader.result;
-      if (result.length <= 0) return;
-      // Destroy editor.js
-      editor.destroy();
-      // Create new editor.js and prefill data from json
-      result = JSON.parse(result);
-      prefillData(result);
-    };
-    reader.readAsText(allFiles.files[0]);
+const contentFileButton = document.querySelector('#file--content');
+if (contentFileButton) {
+  contentFileButton.addEventListener('change', function () {
+    let handleFile = new FileHandler;
+    handleFile.file = this;
+    handleFile.uploadJson();
   });
 }
 
