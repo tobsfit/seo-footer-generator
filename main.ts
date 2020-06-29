@@ -20,34 +20,12 @@ import renderHtml from './plugins/render-html/render-html';
 import download from './plugins/download/download';
 import showAlert from './plugins/alert/alert';
 import eventRemoveButtonsSeo from './plugins/seo-remove-event/seo-remove-event';
+import fillDataFromFile from './plugins/data-handling/data-handling';
 
 import pageContent from './data/data-complex-4';
 
-
-
 let editor: any = {};
 const prefillData = (pageContent: any, type: string) => {
-
-  const fillFromFile = (content: any) => {
-    if (type === 'config') return content;
-    const newContent = {};
-    (newContent as any).blocks = [];
-    try {
-      const splitContentNewline = content.split('\n');
-      for (let paragraph of splitContentNewline) {
-        const newParagraph = {
-          type: 'paragraph',
-          data: {
-            text: paragraph
-          }
-        };
-        (newContent as any).blocks.push(newParagraph);
-      };
-      return newContent;
-    } catch (e) {
-      console.warn(e);
-    }
-  }
   editor = new EditorJS({
     holder: 'editorjs',
     tools: {
@@ -108,7 +86,7 @@ const prefillData = (pageContent: any, type: string) => {
       },
       seofaq: SeoFaq,
     },
-    data: fillFromFile(pageContent),
+    data: fillDataFromFile(pageContent, type),
     logLevel: 'ERROR',
   });
   // prefill seo form data
