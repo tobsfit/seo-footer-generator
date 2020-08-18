@@ -34,7 +34,7 @@ const prefillData = (pageContent: any, type: string) => {
         inlineToolbar: ['link'],
         config: {
           placeholder: 'Header',
-          levels: [3, 4],
+          levels: [2, 3],
         },
         shortcut: 'CMD+SHIFT+H'
       },

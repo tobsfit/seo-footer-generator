@@ -4,14 +4,14 @@ export default {
       type: "header",
       data: {
         text: "You can write your content here. Shortcut headline: <mark class=\"cdx-marker\">CMD+SHIFT+H</mark>",
-        level: 3
+        level: 2
       }
     },
     {
       type: "header",
       data: {
         text: "Quam lacus suspendisse faucibus interdum posuere lorem",
-        level: 4
+        level: 3
       }
     },
     {
@@ -34,14 +34,14 @@ export default {
       type: "header",
       data: {
         text: "Lorem ipsum dolor sit amet",
-        level: 3
+        level: 2
       }
     },
     {
       type: "header",
       data: {
         text: "Quam lacus suspendisse faucibus interdum posuere lorem",
-        level: 4
+        level: 3
       }
     },
     {
@@ -96,6 +96,5 @@ export default {
         text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut <a href="#">labore</a> sunt in <a href="#">culpa</a> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 😏'
       }
     },
-    
   ]
 };

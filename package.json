@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon server.js",
     "watch": "webpack --watch",
-    "cypress:open": "cypress open"
+    "cypress": "cypress open"
   },
   "repository": {
     "type": "git",
