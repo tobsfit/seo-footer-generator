@@ -4,7 +4,7 @@ export default {
       type: "header",
       data: {
         text: "Editor.js",
-        level: 2
+        level: 1
       }
     },
     {
@@ -17,7 +17,7 @@ export default {
       type: "header",
       data: {
         text: "Key features",
-        level: 3
+        level: 2
       }
     },
     {
@@ -35,7 +35,7 @@ export default {
       type: "header",
       data: {
         text: "What does it mean «block-styled editor»",
-        level: 3
+        level: 2
       }
     },
     {
@@ -54,7 +54,7 @@ export default {
       type: "header",
       data: {
         text: "What does it mean clean data output",
-        level: 3
+        level: 2
       }
     },
     {

@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon server.js",
     "watch": "webpack --watch",
-    "cypress:open": "cypress open"
+    "cypress": "cypress open"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,7 @@
     "@editorjs/editorjs": "^2.18.0",
     "@editorjs/header": "^2.5.0",
     "@editorjs/list": "^1.5.0",
+    "@editorjs/paragraph": "^2.7.0",
     "cypress": "^4.11.0",
     "express": "^4.17.1",
     "nodemon": "^2.0.4",
