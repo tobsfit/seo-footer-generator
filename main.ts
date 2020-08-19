@@ -12,6 +12,7 @@ import CodeTool from '@editorjs/code';
 import Delimiter from '@editorjs/delimiter';
 import InlineCode from '@editorjs/inline-code';
 import Table from '@editorjs/table';
+import Paragraph from '@editorjs/paragraph';
 
 import ImageUrl from './plugins/image-url/image-url';
 import SeoFaq from './plugins/seo-faq/seo-faqs'
@@ -37,6 +38,10 @@ const prefillData = (pageContent: any, type: string) => {
           levels: [2, 3],
         },
         shortcut: 'CMD+SHIFT+H'
+      },
+      paragraph: {
+        class: Paragraph,
+        inlineToolbar: true,
       },
       image: {
         class: ImageUrl,
