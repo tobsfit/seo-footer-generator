@@ -20,7 +20,7 @@ const renderHtml = (savedData: any): string => {
         html += '<hr />';
         break;
       case 'image':
-        html += `<img class="img-fluid" src="${block.data.url}" title="${block.data.caption}" /><br /><em>${block.data.caption}</em>`;
+        html += `<img class="img-fluid" src="${block.data.url}" title="${block.data.caption}" alt="${block.data.caption}" /><br /><em>${block.data.caption}</em>`;
         break;
       case 'list':
         html += '<ul>';
