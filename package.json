@@ -49,6 +49,7 @@
     "babel-loader": "^8.1.0",
     "eslint": "^7.3.0",
     "eslint-config-google": "^0.14.0",
+    "parcel-bundler": "^1.12.4",
     "ts-loader": "^7.0.5",
     "typescript": "^3.9.5",
     "webpack": "^4.43.0",
