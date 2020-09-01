@@ -23,10 +23,13 @@ import showAlert from './plugins/alert/alert';
 import eventRemoveButtonsSeo from './plugins/seo-remove-event/seo-remove-event';
 import fillDataFromFile from './plugins/data-handling/data-handling';
 
-import pageContent from './data/data-complex-4';
+import { FileHandler } from './plugins/Filehandler/Filehandler';
+
+import pageContent from '../cypress/fixtures/data-complex-4';
 
 let editor: any = {};
-const prefillData = (pageContent: any, type: string) => {
+
+const prefill = (pageContent: any, type: string) => {
   editor = new EditorJS({
     holder: 'editorjs',
     tools: {
@@ -117,7 +120,7 @@ const prefillData = (pageContent: any, type: string) => {
   }
   eventRemoveButtonsSeo();
 }
-prefillData(pageContent, 'config');
+prefill(pageContent, 'config');
 
 
 // Save surfooter as json file
@@ -136,11 +139,14 @@ if (saveAsJsonButton) {
 const copyContentClipboard = document.querySelector('#copy-content-clipboard');
 if (copyContentClipboard) {
   copyContentClipboard.addEventListener('click', () => {
-    editor.save().then((savedData: any) => {
-      const html = renderHtml(savedData);
-      copyToClipboard(html);
-      showAlert('Surfooter Code was copied.');
-    });
+    editor.save()
+      .then((savedData: any) => {
+        const html = renderAndDisplayHtml(savedData);
+        copyToClipboard(html);
+      })
+      .then(() => {
+        showAlert('Surfooter Code was copied.');
+      })
   });
 }
 
@@ -164,52 +170,14 @@ if (moreSeoQuestionsButton) {
   });
 }
 
-class FileHandler {
-  file: any;
-
-  uploadJson() {
-    const files: any = this.file;
-    const file = files.files[0];
-    const jsonType = /json.*/;
-    const textType = /(text|txt).*/;
-
-    if (files.files.length === 0) {
-      showAlert('No file selected.');
-      return;
-    }
-
-    const processFile = (type: string) => {
-      const reader = new FileReader();
-      reader.onload = function (e) {
-        let result: any = reader.result;
-        if (result.length <= 0) return;
-
-        // Destroy editor.js
-        editor.destroy();
-
-        // Create new editor.js and prefill data from json
-        if (type === 'config') result = JSON.parse(result);
-        prefillData(result, type);
-      }
-      reader.readAsText(file);
-    }
-
-    if (file.type.match(jsonType)) {
-      processFile('config');
-    }
-
-    if (file.type.match(textType)) {
-      processFile('content');
-    }
-  }
-}
-
 // Add file
 const configFileButton = document.querySelector('#file--config');
 if (configFileButton) {
   configFileButton.addEventListener('change', function () {
     let handleFile = new FileHandler;
     handleFile.file = this;
+    handleFile.editor = editor;
+    handleFile.prefill = prefill;
     handleFile.uploadJson();
   });
 }
@@ -220,6 +188,8 @@ if (contentFileButton) {
   contentFileButton.addEventListener('change', function () {
     let handleFile = new FileHandler;
     handleFile.file = this;
+    handleFile.editor = editor;
+    handleFile.prefill = prefill;
     handleFile.uploadJson();
   });
 }
@@ -227,11 +197,20 @@ if (contentFileButton) {
 // Save as html file
 document.querySelector('#save-as-html').addEventListener('click', () => {
   editor.save().then((savedData: any) => {
-    const html = renderHtml(savedData);
+    const html = renderAndDisplayHtml(savedData);
     download("surfooter-code.html", html);
   });
 });
 
+// Render and Save HTML String
+const renderAndDisplayHtml = (savedData: string) => {
+  const html = renderHtml(savedData);
+  const output = document.querySelector('#output');
+  output.innerHTML = html;
+  return html;
+}
+
+// SEO Faqs
 const checkSeoFaqStatus = () => {
   const seoFaqInput = document.querySelector('#seo-faqs__state');
   // check of SEO FAQ section is expanded
@@ -243,7 +222,6 @@ const checkSeoFaqStatus = () => {
     seoFaqInput.parentElement.querySelector('#seo-faqs__state__icon').innerHTML = '&#9997;'; // writing hand // https://www.w3schools.com/charsets/ref_emoji.asp
   }
 }
-
 document.querySelector('#seo-faqs__state').addEventListener('change', (e) => {
   checkSeoFaqStatus();
 });
