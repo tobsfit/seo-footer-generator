@@ -4,8 +4,8 @@
   "description": "Used packages:",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server.js",
-    "watch": "webpack --watch",
+    "start": "nodemon src/server.js",
+    "build": "parcel src/index.html",
     "cypress": "cypress open"
   },
   "repository": {
@@ -47,6 +47,7 @@
     "@typescript-eslint/eslint-plugin": "^3.3.0",
     "@typescript-eslint/parser": "^3.3.0",
     "babel-loader": "^8.1.0",
+    "babel-preset-env": "^1.7.0",
     "eslint": "^7.3.0",
     "eslint-config-google": "^0.14.0",
     "parcel-bundler": "^1.12.4",

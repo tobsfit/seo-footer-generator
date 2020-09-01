@@ -4,14 +4,14 @@ const router = express.Router();
 const path = require('path');
 const port = 5000;
 
-app.use(express.static('public'));
+app.use(express.static('dist'));
 
 router.get('/',function(req,res){
-  res.sendFile(path.join(__dirname+'/index.html'));
+  res.sendFile(path.join(__dirname + './../dist/index.html'));
 });
 
 app.use('/', router);
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
+  console.log(`http://localhost:${port}`)
 });
