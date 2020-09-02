@@ -5,19 +5,18 @@ const seoFaqs = {
 };
 
 describe('Visit Tool', () => {
-
   beforeEach(() => {
     cy.visit('localhost:5000');
-    cy.get('#editorjs').should('exist');
-    cy.get('.ce-header').should('contain', 'You can write your content here. Shortcut headline:');
   });
-  
-  it('User can modify editor.js headline', () => {
+
+  describe('Edit editor.js content', () => {
     const sampleData = 'The quick, brown fox jumps over a lazy dog.';
-    cy.visit('/')
-    cy.get('#editorjs').should('exist')
-    cy.get('.ce-header').should('contain', 'You can write your content here. Shortcut headline')
-    cy.get('.codex-editor__redactor .ce-block:first-child .ce-header').type(sampleData).should('contain', sampleData)
+    
+    it('User can modify editor.js headline', () => {
+      cy.get('#editorjs').should('exist')
+      cy.get('.ce-header').should('contain', 'You can write your content here. Shortcut headline')
+      cy.get('.codex-editor__redactor .ce-block:first-child .ce-header').type(sampleData).should('contain', sampleData)
+    });
   });
 
   describe('SEO Questions', () => {
@@ -48,12 +47,49 @@ describe('Visit Tool', () => {
     });
   });
   
+  describe('Finish seofooter', () => {
+    let heading;
+    let paragraph;
+    
+    beforeEach(()=> {  
+      // get first heading
+      cy.get('.ce-header').first().then(($btn) => {
+        heading = $btn.text();
+      });
+      cy.get('.ce-paragraph').first().then(($btn) => {
+        paragraph = $btn.text();
+      });
+    });
 
-  it.only('Copy to clipboard', () => {
-    cy.get('#copy-content-clipboard').click();
-    cy.contains('Surfooter Code was copied.');
-    const block = cy.get('.ce-block').eq(1).its('text')
-    cy.get('#output').contains(block)
+    it('Click Save configuration file button', () => {
+      // check local storage
+      cy.get('#save-as-json').click().should(() => {
+        cy.log(heading);
+        cy.log(paragraph);
+        expect(localStorage.getItem('structured')).to.contain(heading);
+      });
+    });
+
+    it('Click save as html button', () => {
+      // check local storage
+      cy.get('#save-as-html').click().should(() => {
+        cy.log(heading);
+        cy.log(paragraph);
+        expect(localStorage.getItem('html')).to.contain(heading);
+        expect(localStorage.getItem('html')).to.contain(paragraph);
+      });
+    });
+    
+    it('Save as html button', () => {
+      // check local storage
+      cy.get('#save-as-html').click().should(() => {
+        cy.log(heading);
+        cy.log(paragraph);
+        expect(localStorage.getItem('html')).to.contain(heading);
+        expect(localStorage.getItem('html')).to.contain(paragraph);
+      });
+    });
+
   });
 
 });

@@ -2,8 +2,6 @@ import beautifyString from '../format-document/beautify-string';
 
 const renderHtml = (savedData: any): string => {
   const blocks = savedData.blocks;
-  console.log(blocks);
-
   const css = `<style id="surfooter__styles">${document.querySelector('#clipboard__styling').innerHTML}</style>`;
   let html = css;
   html += `<div class="surfooter">`

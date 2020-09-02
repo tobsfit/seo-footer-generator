@@ -128,8 +128,8 @@ const saveAsJsonButton = document.getElementById('save-as-json');
 if (saveAsJsonButton) {
   saveAsJsonButton.addEventListener('click', function () {
     editor.save().then((savedData: any) => {
-      // Print to console the saved data as json
-      console.log(savedData);
+      // use localstorage to save the structured data
+      localStorage.setItem('structured', JSON.stringify(savedData));
       download("surfooter.json", JSON.stringify(savedData));
     });
   });
@@ -204,9 +204,10 @@ document.querySelector('#save-as-html').addEventListener('click', () => {
 
 // Render and Save HTML String
 const renderAndDisplayHtml = (savedData: string) => {
+  // create html string
   const html = renderHtml(savedData);
-  const output = document.querySelector('#output');
-  output.innerHTML = html;
+  // save html string in localstorage
+  localStorage.setItem('html', html + '');
   return html;
 }
 
