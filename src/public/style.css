@@ -113,7 +113,7 @@ textarea:focus {
   margin-top: 6rem;
 }
 
-.surfooter-button {
+.seofooter-button {
   background-color: #2cc36b;
   border: 0;
   padding: 0.75rem 1.75rem;
@@ -124,7 +124,7 @@ textarea:focus {
   max-width: 100%;
 }
 
-.surfooter-button--saturated {
+.seofooter-button--saturated {
   background-color: #ffffff;
 }
 
@@ -219,7 +219,7 @@ a:active {
   display: flex;
 }
 
-.surfooter__actions {
+.seofooter__actions {
   margin-top: 5rem;
 }
 
@@ -263,26 +263,26 @@ mark, .mark{
   padding-bottom: 0 !important;
 }
 
-.surfooter .ce-block__content {
+.seofooter .ce-block__content {
   max-width: 750px;
 }
 
-.surfooter .simple-image > div {
+.seofooter .simple-image > div {
   text-align: center;
 }
 
-.surfooter .cdx-list--unordered {
+.seofooter .cdx-list--unordered {
   list-style: none;
 }
 
-.surfooter .ce-delimiter {
+.seofooter .ce-delimiter {
   height: auto;
   text-align: center;
   margin: 0;
   padding: 0;
 }
 
-.surfooter .ce-delimiter:before {
+.seofooter .ce-delimiter:before {
   display: inline-block;
   content: "***";
   font-size: 30px;

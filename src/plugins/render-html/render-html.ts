@@ -2,9 +2,9 @@ import beautifyString from '../format-document/beautify-string';
 
 const renderHtml = (savedData: any): string => {
   const blocks = savedData.blocks;
-  const css = `<style id="surfooter__styles">${document.querySelector('#clipboard__styling').innerHTML}</style>`;
+  const css = `<style id="seofooter__styles">${document.querySelector('#clipboard__styling').innerHTML}</style>`;
   let html = css;
-  html += `<div class="surfooter">`
+  html += `<div class="seofooter">`
   for (let block of blocks) {
     let { type, data } = <any>block;
     switch (type) {
@@ -28,10 +28,10 @@ const renderHtml = (savedData: any): string => {
         html += '</ul>';
         break;
       case 'checklist':
-        html += '<div class="surfooter__checkboxes">';
+        html += '<div class="seofooter__checkboxes">';
         block.data.items.forEach(function (item: any) {
           html += `
-            <div class="surfooter__checkbox">
+            <div class="seofooter__checkbox">
               <input type="checkbox" id="${item.text}" name="${item.text}" ${item.checked ? 'checked' : ''}>
               <label for="${item.text}">${item.text}</label>
             </div>`
@@ -39,27 +39,27 @@ const renderHtml = (savedData: any): string => {
         html += '</div>';
         break;
       case 'quote':
-        html += '<div class="surfooter__quote">';
+        html += '<div class="seofooter__quote">';
         html += `<blockquote ${block.data.alignment ? `style="text-align: ${block.data.alignment}` : ''}">
           ${block.data.caption ? '<span>Author: ' + block.data.caption + '</span>' : ''}
           </blockquote>`;
         html += '</div>';
         break;
       case 'warning':
-        html += `<div class="surfooter__warning">
-            <div class="surfooter__warning__title">${block.data.title}</div>
-            <div class="surfooter__warning__message">${block.data.message}</div>
+        html += `<div class="seofooter__warning">
+            <div class="seofooter__warning__title">${block.data.title}</div>
+            <div class="seofooter__warning__message">${block.data.message}</div>
           </div>`;
         break;
       case 'code':
-        html += `<textarea class="surfooter__code">${block.data.code}</textarea>`;
+        html += `<textarea class="seofooter__code">${block.data.code}</textarea>`;
         break;
       case 'seofaq':
         html += `<script type="application/ld+json">${block.data.content}</script>`;
         break;
       case 'table':
         html += '<div style="overflow-x: scroll">';
-        html += '<table class="surfooter__table" style="width:100%">';
+        html += '<table class="seofooter__table" style="width:100%">';
         block.data.content.forEach(function (tableRow: any, index: number) {
           html += '<tr>';
           tableRow.forEach(function (tableCol: any) {

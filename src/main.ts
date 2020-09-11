@@ -113,7 +113,7 @@ const prefill = (pageContent: any, type: string) => {
       <div class="seo-faq">
         <textarea class="seo-faq__question">${question.name}</textarea>
         <textarea class="seo-faq__answer" name="seo-faq__q1">${question.acceptedAnswer.text}</textarea>
-        <button type="button" class="seo-faq__remove surfooter-button surfooter-button--saturated">&#128293;</button>
+        <button type="button" class="seo-faq__remove seofooter-button seofooter-button--saturated">&#128293;</button>
       </div>`;
       seoFaqForm.innerHTML += questionCode;
     });
@@ -123,14 +123,14 @@ const prefill = (pageContent: any, type: string) => {
 prefill(pageContent, 'config');
 
 
-// Save surfooter as json file
+// Save seofooter as json file
 const saveAsJsonButton = document.getElementById('save-as-json');
 if (saveAsJsonButton) {
   saveAsJsonButton.addEventListener('click', function () {
     editor.save().then((savedData: any) => {
       // use localstorage to save the structured data
       localStorage.setItem('structured', JSON.stringify(savedData));
-      download("surfooter.json", JSON.stringify(savedData));
+      download("seofooter.json", JSON.stringify(savedData));
     });
   });
 }
@@ -145,7 +145,7 @@ if (copyContentClipboard) {
         copyToClipboard(html);
       })
       .then(() => {
-        showAlert('Surfooter Code was copied.');
+        showAlert('seofooter Code was copied.');
       })
   });
 }
@@ -163,7 +163,7 @@ if (moreSeoQuestionsButton) {
       <div class="seo-faq">
       <textarea class="seo-faq__question">Question ${newQuestionNumber}</textarea>
         <textarea class="seo-faq__answer" name="seo-faq__q${newQuestionNumber}">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea>
-        <button type="button" class="seo-faq__remove surfooter-button surfooter-button--saturated">&#128293;</button>
+        <button type="button" class="seo-faq__remove seofooter-button seofooter-button--saturated">&#128293;</button>
       </div>`;
     (addMore as HTMLElement).insertAdjacentHTML('beforebegin', newQuestion);
     eventRemoveButtonsSeo();
@@ -198,7 +198,7 @@ if (contentFileButton) {
 document.querySelector('#save-as-html').addEventListener('click', () => {
   editor.save().then((savedData: any) => {
     const html = renderAndDisplayHtml(savedData);
-    download("surfooter-code.html", html);
+    download("seofooter-code.html", html);
   });
 });
 
