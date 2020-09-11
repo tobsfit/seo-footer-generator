@@ -1,7 +1,7 @@
 {
-  "name": "surfooter-generator",
-  "version": "1.0.0",
-  "description": "Used packages:",
+  "name": "seo-footer-generator",
+  "version": "0.0.2",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "nodemon src/server.js",
@@ -12,8 +12,6 @@
     "type": "git",
     "url": "git+https://github.com/tobsfit/surfooter-generator.git"
   },
-  "author": "",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/tobsfit/surfooter-generator/issues"
   },
