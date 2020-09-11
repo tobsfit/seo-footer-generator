@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html class="no-js">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>SEO Template</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://tobsfit.github.io/seo-footer-generator/public/style.css" rel="stylesheet">
+</head>
+
+
+<body>
+  <div class="alert">
+    <p>Message</p>
+  </div>
+
+  <div id="image-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <form id="form-image" name="form-image" method="POST">
+        <label>Image ALT</label>
+        <input id="form-image--alt" name="form-image--alt" type="text" placeholder="Image ALT" />
+        <label>Image URL</label>
+        <input id="form-image--url" name="form-image--url" type="text" placeholder="Image URL" />
+        <button id="form-image-submit" type="submit" class="seofooter-button">Submit</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="wrapper">
+    <aside>
+      <div class="seo-faqs">
+        <input id="seo-faqs__state" name="seo-faqs__state" type="checkbox" class="toggle-section__input" checked />
+        <label class="toggle-section__headline" for="seo-faqs__state">
+          SEO FAQ seofooter
+          <span id="seo-faqs__state__icon" class="icon">&#8964;</span>
+          <a href="https://developers.google.com/search/docs/data-types/faqpage?hl=en" target="_blank" rel="noopener">
+            Read more about: SEO FAQs with structured data
+          </a>
+        </label>
+        <form id="seo-faqs" method="POST">
+          <!-- question -->
+          <div class="seo-faq">
+            <textarea class="seo-faq__question">Question 1</textarea>
+            <textarea class="seo-faq__answer"
+              name="seo-faq__q1">Quis nostrud exercitation ullamco laboris nisi ut aliquip.</textarea>
+            <button type="button"
+              class="seo-faq__remove seofooter-button seofooter-button--saturated">&#128293;</button>
+          </div>
+          <!-- question -->
+          <div class="seo-faq">
+            <textarea class="seo-faq__question">Question 2</textarea>
+            <textarea class="seo-faq__answer"
+              name="seo-faq__q2">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea>
+            <button type="button"
+              class="seo-faq__remove seofooter-button seofooter-button--saturated">&#128293;</button>
+          </div>
+          <!-- question -->
+          <div class="seo-faq">
+            <textarea class="seo-faq__question">Question 3</textarea>
+            <textarea class="seo-faq__answer"
+              name="seo-faq__q3">Aliquip exea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu</textarea>
+            <button type="button"
+              class="seo-faq__remove seofooter-button seofooter-button--saturated">&#128293;</button>
+          </div>
+          <!-- question -->
+          <div class="seo-faq">
+            <textarea class="seo-faq__question">Question 4</textarea>
+            <textarea class="seo-faq__answer"
+              name="seo-faq__q4">consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim adminim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip exea commodo consequat.</textarea>
+            <button type="button"
+              class="seo-faq__remove seofooter-button seofooter-button--saturated">&#128293;</button>
+          </div>
+          <div class="icon icon__info"><span>&#9757;&#127996;</span> If you want to add the seo-faq section on top, pls
+            add it via the toolbar &#9641;.</div>
+          <button id="seo-faqs__more" class="seofooter-button" type="button">&#129504;&nbsp;Add more questions</button>
+        </form>
+    </aside>
+
+    <aside>
+      <form id="upload-file--content" name="upload-file--content" method="POST">
+        <span class="icon">&#128466;&nbsp;</span>
+        <label for="file--content">Choose <strong>content</strong> file to upload <i>(.json or .txt)</i>&nbsp;</label>
+        <input type="file" id="file--content" class="seofooter-button" name="file--content" multiple>
+        <p>Your can store or restore your data via <i>.json</i> or <i>.txt</i> file</p>
+      </form>
+    </aside>
+
+    <aside>
+      <div class="good-to-know">
+        <span>Good to know</span><span class="icon icon--supersized">&nbsp;&#129504;</span>
+      </div>
+      <div>
+        For some content types are shortcuts available, for quick editing:
+        <ol>
+          <li>Headings: <mark>CMD+SHIFT+H</mark></li>
+          <li>List <mark>CMD+SHIFT+L</mark></li>
+          <li>Marker <mark>CMD+SHIFT+M</mark></li>
+          <li>Table <mark>CMD+ALT+T</mark></li>
+        </ol>
+      </div>
+    </aside>
+
+    <main>
+      <div id="clipboard">
+        <style id="clipboard__styling">
+          .seofooter * {
+            text-align: left;
+            line-height: 1.5
+          }
+
+          @media screen and (min-width: 768px) {
+            .seofooter {
+              max-width: 720px;
+              margin: auto;
+            }
+          }
+
+          .seofooter h2 {
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 2rem 0 1rem 0;
+            padding: 0;
+            color: #323233;
+            text-align: left;
+          }
+
+          .seofooter h3 {
+            font-size: 1.3rem;
+            font-weight: normal;
+            margin: 1rem 0 0.5rem 0;
+            padding: 0;
+            color: #323233;
+            text-align: left;
+            height: auto;
+          }
+
+          .seofooter h5 {
+            font-size: 1rem;
+            font-weight: normal;
+            margin: 0.75rem 0 0.25rem 0;
+            padding: 0;
+            color: #323233;
+            text-align: left;
+          }
+
+          .seofooter h6 {
+            font-size: 1rem;
+            font-weight: normal;
+            margin: 0.75rem 0 0.25rem 0;
+            padding: 0;
+            color: #323233;
+            text-align: left;
+          }
+
+          .seofooter p {
+            font-size: 1.3rem;
+            font-style: normal;
+            text-align: left;
+            color: #323233;
+            margin: 1rem 0;
+            padding: 0;
+          }
+
+          .seofooter ul,
+          .seofooter ol {
+            padding-left: 0;
+            margin: 1rem 0;
+          }
+
+          @media screen and (min-width: 768px) {
+            .seofooter ul {
+              padding-left: 2rem;
+            }
+          }
+
+          .seofooter li {
+            font-size: 1.3rem;
+            line-height: 1.75
+          }
+
+          .seofooter li:before {
+            content: "•";
+            padding-right: 8px;
+            color: #0082c3;
+          }
+
+          .seofooter .mark,
+          .seofooter mark {
+            background-color: #0082c3;
+            color: white;
+            padding: 0.25rem 0.5rem;
+            letter-spacing: 0.1rem;
+          }
+
+          .seofooter .scrollable-table {
+            overflow-x: auto;
+          }
+
+          .seofooter table {
+            width: 100%;
+            text-align: left;
+            padding: 1rem 0
+          }
+
+          .seofooter img {
+            max-width: 100%;
+            display: block;
+          }
+
+          .seofooter blockquote {
+            display: block;
+            margin-top: 1em;
+            margin-bottom: 1em;
+            margin-left: 0;
+            margin-right: 0;
+            box-shadow: 0 0 5px rgba(0, 0, 0, .2);
+            border-left: 5px solid #0082c3;
+            font-size: 1.3rem;
+          }
+
+          .seofooter a {
+            color: #0082c3;
+            text-decoration: none;
+          }
+
+          .seofooter a:hover,
+          .seofooter a:active {
+            text-decoration: underline;
+          }
+
+          @media screen and (min-width: 768px) {
+            .seofooter blockquote {
+              margin-left: 4rem;
+              margin-right: 4rem;
+            }
+          }
+
+          .seofooter__warning {
+            display: block;
+            margin-top: 1em;
+            margin-bottom: 1em;
+            margin-left: 0;
+            margin-right: 0;
+            box-shadow: 0 0 5px rgba(0, 0, 0, .2);
+            border-left: 5px solid rgba(255, 218, 29);
+            font-size: 1.3rem;
+            padding: 1rem 2rem;
+          }
+
+          @media screen and (min-width: 768px) {
+            .seofooter__warning {
+              margin-left: 4rem;
+              margin-right: 4rem;
+            }
+          }
+
+          textarea.seofooter__code {
+            border: 1px solid rgba(201, 201, 204, .48);
+            -webkit-box-shadow: inset 0 1px 2px 0 rgba(35, 44, 72, .06);
+            box-shadow: inset 0 1px 2px 0 rgba(35, 44, 72, .06);
+            border-radius: 3px;
+            padding: 10px 12px;
+            outline: none;
+            width: 100%;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+          }
+
+          .seofooter__table {
+            border-collapse: collapse;
+            width: 100%;
+          }
+
+          .seofooter__table td,
+          .seofooter__table th {
+            border: 1px solid #ddd;
+            padding: 1rem;
+          }
+
+          .seofooter__table tr:nth-child(even) {
+            background-color: #f2f2f2;
+          }
+
+          .seofooter__table tr:hover {
+            background-color: #ddd;
+          }
+
+          .seofooter__table th {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+            background-color: #0082c3;
+            color: white;
+          }
+
+          @media screen and (min-width: 768px) {
+            .seofooter img {
+              margin: 3rem auto 1rem;
+              max-width: 40rem;
+              box-shadow: 0 0 5px rgba(0, 0, 0, .2);
+              transition: 200ms;
+            }
+
+            .seofooter img:hover {
+              transform: scale(1.015);
+            }
+          }
+
+          .seofooter hr {
+            height: auto;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+          }
+
+          .seofooter hr:before {
+            display: inline-block;
+            content: "***";
+            font-size: 30px;
+            line-height: 65px;
+            height: 30px;
+            letter-spacing: 0.3em;
+            color: #0082c3;
+          }
+
+          .seofooter em {
+            text-align: center;
+            display: block;
+          }
+
+          .seofooter__checkbox {
+            line-height: 2;
+          }
+
+          .seofooter__checkbox input[type=checkbox] {
+            margin: 0;
+          }
+
+          .seofooter__checkbox label {
+            position: relative;
+            bottom: .1rem;
+            left: 1rem;
+            padding: 0;
+          }
+
+          /* article styling */
+          .seofooter .article-container {
+            display: flex;
+            flex-direction: column;
+          }
+
+          .seofooter article {
+            padding: 0;
+          }
+
+          .seofooter article:first-child {
+            padding-left: 0;
+          }
+
+          .seofooter article:last-child {
+            padding-right: 0;
+          }
+
+          .seofooter .img-responsive {
+            width: 100%;
+          }
+
+          @media screen and (min-width: 768px) {
+            .seofooter .article-container {
+              flex-direction: row;
+            }
+
+            .seofooter article {
+              padding: 0 1rem;
+            }
+          }
+
+          .seofooter {
+            width: 100%;
+          }
+        </style>
+        <div class="seofooter">
+          <div id="editorjs"></div>
+        </div>
+        <code id="seofooter__seo-faqs-preview" lang="html5"></code>
+      </div><!-- End Clipboard -->
+    </main>
+    
+    <aside class="seofooter__actions">
+      <div class="icon icon__info"><span>&#9757;&#127996;</span> If you want to add the seo-faq section on top, pls add
+        it via the toolbar.&#9641;</div>
+      <div>
+        <button id="save-as-json" type="button" class="seofooter-button" download>&#128190;&nbsp;Save seofooter
+          configuration as <i>(.json)</i></button>
+      </div>
+      <div>
+        <button id="copy-content-clipboard" type="button" class="seofooter-button">&#128209;&nbsp;Copy to
+          clipboard (right-click copy)</button>
+      </div>
+      <div>
+        <button id="save-as-html" type="button" class="seofooter-button">&#129302;&nbsp;Save as html-file - on your
+          PC</button>
+      </div>
+    </aside>
+  </div>
+  <script type="text/javascript" src="https://tobsfit.github.io/seo-footer-generator/public/bundle.js"></script>
+  </div>
+</body>
+</html>
